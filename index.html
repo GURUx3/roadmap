@@ -1,1818 +1,455 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DSA 90-Day Blueprint</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&display=swap"
-    rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <title>DSA · Placement Prep</title>
   <style>
-    :root {
-      --bg: #f7f6f3;
-      --surface: #ffffff;
-      --surface-alt: #f2f1ee;
-      --border: #e8e6e1;
-      --border-soft: #f0eee9;
-
-      --ink: #1a1916;
-      --ink-2: #3d3c38;
-      --ink-3: #6b6960;
-      --ink-4: #9e9c96;
-
-      --m1: #2d6a4f;
-      --m1-bg: #edf7f2;
-      --m1-mid: #c8e6d9;
-
-      --m2: #1e3a8a;
-      --m2-bg: #eff4ff;
-      --m2-mid: #c3d4f5;
-
-      --m3: #92400e;
-      --m3-bg: #fef7ee;
-      --m3-mid: #f5d9b0;
-
-      --easy: #2d6a4f;
-      --easy-bg: #edf7f2;
-      --medium: #b45309;
-      --medium-bg: #fef7ee;
-      --hard: #9f1239;
-      --hard-bg: #fff1f3;
-
-      --radius: 10px;
-      --radius-sm: 6px;
-      --sidebar-w: 252px;
-    }
-
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      font-size: 15px;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      line-height: 1.5;
-      min-height: 100vh;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── HEADER ── */
-    .header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 0 32px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 200;
-    }
-
-    .header-inner {
-      width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 0;
-    }
-
-    .logo {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      flex: 1;
-    }
-
-    .logo-mark {
-      font-family: 'Fraunces', serif;
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--ink);
-      letter-spacing: -0.3px;
-    }
-
-    .logo-sub {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      color: var(--ink-4);
-      letter-spacing: 0.02em;
-      font-weight: 400;
-    }
-
-    .header-stats {
-      display: flex;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-    }
-
-    .h-stat {
-      background: var(--surface);
-      padding: 7px 18px;
-      text-align: center;
-    }
-
-    .h-stat .n {
-      font-family: 'Fraunces', serif;
-      font-size: 16px;
-      font-weight: 400;
-      color: var(--ink);
-      line-height: 1;
-      display: block;
-    }
-
-    .h-stat .l {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      color: var(--ink-4);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      display: block;
-      margin-top: 2px;
-    }
-
-    /* ── LAYOUT ── */
-    .layout {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: var(--sidebar-w) 1fr;
-      min-height: calc(100vh - 60px);
-    }
-
-    /* ── SIDEBAR ── */
-    .sidebar {
-      background: var(--surface);
-      border-right: 1px solid var(--border);
-      padding: 20px 0 32px;
-      position: sticky;
-      top: 60px;
-      height: calc(100vh - 60px);
-      overflow-y: auto;
-    }
-
-    .sidebar::-webkit-scrollbar {
-      width: 3px;
-    }
-
-    .sidebar::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .sidebar::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 2px;
-    }
-
-    .sidebar-group {
-      margin-bottom: 4px;
-    }
-
-    .sidebar-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-4);
-      padding: 12px 20px 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .sidebar-label::before {
-      content: '';
-      display: inline-block;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .sg-m1 .sidebar-label::before {
-      background: var(--m1);
-    }
-
-    .sg-m2 .sidebar-label::before {
-      background: var(--m2);
-    }
-
-    .sg-m3 .sidebar-label::before {
-      background: var(--m3);
-    }
-
-    .week-btn {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      width: 100%;
-      background: none;
-      border: none;
-      color: var(--ink-3);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      padding: 8px 20px;
-      cursor: pointer;
-      text-align: left;
-      border-left: 2px solid transparent;
-      transition: all 0.12s ease;
-      line-height: 1.3;
-    }
-
-    .week-btn:hover {
-      color: var(--ink);
-      background: var(--surface-alt);
-    }
-
-    .week-btn.active {
-      color: var(--ink);
-      font-weight: 500;
-      background: var(--surface-alt);
-    }
-
-    .sg-m1 .week-btn.active {
-      border-left-color: var(--m1);
-      color: var(--m1);
-    }
-
-    .sg-m2 .week-btn.active {
-      border-left-color: var(--m2);
-      color: var(--m2);
-    }
-
-    .sg-m3 .week-btn.active {
-      border-left-color: var(--m3);
-      color: var(--m3);
-    }
-
-    .w-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      color: var(--ink-4);
-      min-width: 26px;
-      flex-shrink: 0;
-    }
-
-    .week-btn.active .w-num {
-      color: inherit;
-      opacity: 0.6;
-    }
-
-    /* ── MAIN ── */
-    .main {
-      padding: 32px 36px 64px;
-      overflow-y: auto;
-    }
-
-    /* ── WEEK HERO ── */
-    .week-hero {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 32px 36px;
-      margin-bottom: 24px;
-    }
-
-    .week-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      opacity: 0.7;
-    }
-
-    .week-title {
-      font-family: 'Fraunces', serif;
-      font-size: 28px;
-      font-weight: 400;
-      letter-spacing: -0.5px;
-      line-height: 1.2;
-      color: var(--ink);
-      margin-bottom: 14px;
-    }
-
-    .week-focus {
-      font-size: 14px;
-      color: var(--ink-3);
-      line-height: 1.65;
-      max-width: 640px;
-      margin-bottom: 22px;
-    }
-
-    .week-chips {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      padding: 5px 12px;
-      border-radius: 100px;
-      font-weight: 400;
-    }
-
-    .chip-m1 {
-      background: var(--m1-bg);
-      color: var(--m1);
-    }
-
-    .chip-m2 {
-      background: var(--m2-bg);
-      color: var(--m2);
-    }
-
-    .chip-m3 {
-      background: var(--m3-bg);
-      color: var(--m3);
-    }
-
-    .chip-neutral {
-      background: var(--surface-alt);
-      color: var(--ink-3);
-    }
-
-    .mentor-block {
-      background: var(--surface-alt);
-      border-left: 3px solid var(--border);
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      padding: 16px 20px;
-      font-size: 13.5px;
-      color: var(--ink-3);
-      line-height: 1.65;
-    }
-
-    .mentor-block.m1 {
-      border-left-color: var(--m1);
-    }
-
-    .mentor-block.m2 {
-      border-left-color: var(--m2);
-    }
-
-    .mentor-block.m3 {
-      border-left-color: var(--m3);
-    }
-
-    .mentor-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-      opacity: 0.55;
-    }
-
-    .mentor-block strong {
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    /* ── DAYS GRID ── */
-    .days-grid {
-      display: grid;
-      gap: 10px;
-    }
-
-    .day-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: border-color 0.15s;
-    }
-
-    .day-card:hover {
-      border-color: #d8d5cf;
-    }
-
-    .day-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 20px;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .day-num-badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      color: var(--ink-4);
-      background: var(--surface-alt);
-      padding: 3px 8px;
-      border-radius: 4px;
-      flex-shrink: 0;
-      letter-spacing: 0.03em;
-    }
-
-    .day-title {
-      font-size: 13.5px;
-      font-weight: 500;
-      color: var(--ink);
-      flex: 1;
-    }
-
-    .day-meta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .p-count-badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      color: var(--ink-4);
-    }
-
-    .expand-btn {
-      width: 22px;
-      height: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--ink-4);
-      transition: transform 0.2s ease, color 0.15s;
-      flex-shrink: 0;
-    }
-
-    .expand-btn svg {
-      display: block;
-    }
-
-    .day-card.open .expand-btn {
-      transform: rotate(180deg);
-      color: var(--ink-3);
-    }
-
-    .day-body {
-      display: none;
-      padding: 0 20px 16px;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .day-card.open .day-body {
-      display: flex;
-    }
-
-    .day-note {
-      font-size: 12.5px;
-      color: var(--ink-3);
-      background: var(--surface-alt);
-      border-radius: var(--radius-sm);
-      padding: 10px 14px;
-      line-height: 1.6;
-      margin-bottom: 4px;
-    }
-
-    .problem-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 9px 14px;
-      background: var(--bg);
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius-sm);
-      transition: border-color 0.12s, background 0.12s;
-    }
-
-    .problem-row:hover {
-      border-color: var(--border);
-      background: #f5f4f0;
-    }
-
-    .p-idx {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      color: var(--ink-4);
-      min-width: 20px;
-      flex-shrink: 0;
-    }
-
-    .p-name {
-      flex: 1;
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--ink-2);
-    }
-
-    .p-lc {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      color: var(--ink-4);
-      flex-shrink: 0;
-    }
-
-    .diff-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 9.5px;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 3px 9px;
-      border-radius: 100px;
-      flex-shrink: 0;
-    }
-
-    .diff-tag.easy {
-      background: var(--easy-bg);
-      color: var(--easy);
-    }
-
-    .diff-tag.medium {
-      background: var(--medium-bg);
-      color: var(--medium);
-    }
-
-    .diff-tag.hard {
-      background: var(--hard-bg);
-      color: var(--hard);
-    }
-
-    .solve-link {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      color: var(--ink-4);
-      text-decoration: none;
-      padding: 4px 10px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      transition: all 0.12s;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .solve-link:hover {
-      color: var(--ink);
-      border-color: var(--ink-3);
-    }
-
-    /* ── REST DAY ── */
-    .rest-day .day-header {
-      opacity: 0.65;
-    }
-
-    .rest-content {
-      padding: 20px;
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-
-    .rest-icon {
-      font-size: 20px;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .rest-text {
-      font-size: 13px;
-      color: var(--ink-3);
-      line-height: 1.65;
-    }
-
-    .rest-text strong {
-      color: var(--ink);
-    }
-
-    /* ── OVERVIEW ── */
-    .overview-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .phase-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px 24px 22px;
-    }
-
-    .phase-month {
-      font-family: 'DM Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .phase-title {
-      font-family: 'Fraunces', serif;
-      font-size: 19px;
-      font-weight: 400;
-      letter-spacing: -0.3px;
-      margin-bottom: 10px;
-      line-height: 1.2;
-    }
-
-    .phase-desc {
-      font-size: 13px;
-      color: var(--ink-3);
-      line-height: 1.6;
-    }
-
-    .phase-weeks {
-      display: inline-block;
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      padding: 3px 10px;
-      border-radius: 100px;
-      margin-bottom: 12px;
-    }
-
-    .rules-section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px 28px 22px;
-    }
-
-    .rules-title {
-      font-family: 'Fraunces', serif;
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 18px;
-    }
-
-    .rules-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .rule {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      padding: 14px 16px;
-      background: var(--surface-alt);
-      border-radius: var(--radius-sm);
-    }
-
-    .rule-ico {
-      font-size: 15px;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .rule-body {
-      font-size: 12.5px;
-      color: var(--ink-3);
-      line-height: 1.6;
-    }
-
-    .rule-body strong {
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    .overview-header {
-      margin-bottom: 28px;
-    }
-
-    .overview-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-4);
-      margin-bottom: 8px;
-    }
-
-    .overview-title {
-      font-family: 'Fraunces', serif;
-      font-size: 32px;
-      font-weight: 400;
-      letter-spacing: -0.8px;
-      line-height: 1.15;
-      color: var(--ink);
-    }
-
-    .overview-title em {
-      font-style: italic;
-      color: var(--ink-3);
-    }
-
-    .overview-sub {
-      font-size: 14px;
-      color: var(--ink-3);
-      margin-top: 8px;
-      line-height: 1.6;
-      max-width: 540px;
-    }
-
-    .nav-hint {
-      text-align: center;
-      padding: 32px 0 8px;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      color: var(--ink-4);
-    }
-
-    /* ── DIVIDER ── */
-    .section-div {
-      height: 1px;
-      background: var(--border);
-      margin: 10px 0 18px;
-    }
-
-    /* ── SCROLLBAR ── */
-    ::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 3px;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 860px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-
-      .sidebar {
-        position: static;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .overview-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .rules-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .main {
-        padding: 20px;
-      }
-
-      .week-hero {
-        padding: 22px 22px;
-      }
-    }
-
-    /* Animation */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-in {
-      animation: fadeUp 0.22s ease forwards;
-    }
+    :root{
+      --bg:#f7f6f3;--surface:#fff;--border:#e8e6e1;--ink:#1a1916;
+      --easy:#2d6a4f;--medium:#b45309;--hard:#9f1239;--radius:6px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px}
+    body{background:var(--bg);color:var(--ink);padding:24px;max-width:780px}
+    h1{font-size:18px;margin-bottom:4px}
+    .sub{color:#888;font-size:11px;margin-bottom:10px}
+    .pbar-wrap{height:3px;background:#e8e6e1;border-radius:2px;margin-bottom:6px}
+    .pbar{height:3px;background:var(--easy);border-radius:2px;transition:width .3s;width:0}
+    .ptxt{font-size:11px;color:#888;margin-bottom:18px}
+    .phase{margin-bottom:10px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface)}
+    .ph-head{padding:10px 12px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}
+    .ph-head:hover{background:#faf9f6}
+    .ph-meta{font-weight:400;color:#aaa;font-size:11px;display:flex;gap:10px;align-items:center}
+    .ph-done{color:var(--easy);font-size:10px}
+    .ph-body{display:none;padding:4px 12px 10px}
+    .phase.open .ph-body{display:block}
+    .problem{display:flex;gap:6px;padding:3.5px 0;align-items:center}
+    .problem.done a{text-decoration:line-through;opacity:.4}
+    .problem.done .tag,.problem.done .src{opacity:.4}
+    .num{color:#ccc;width:24px;flex-shrink:0;text-align:right;font-size:11px}
+    .tag{font-size:10px;padding:1px 5px;border-radius:3px;color:#fff;flex-shrink:0}
+    .tag.Easy{background:var(--easy)}.tag.Medium{background:var(--medium)}.tag.Hard{background:var(--hard)}
+    .src{font-size:10px;font-weight:700;flex-shrink:0}
+    .src.lc{color:#f59e0b}.src.gfg{color:#16a34a}
+    a{color:var(--ink);text-decoration:none}
+    a:hover{text-decoration:underline}
+    input[type=checkbox]{cursor:pointer;accent-color:var(--easy);flex-shrink:0;width:13px;height:13px}
   </style>
 </head>
-
 <body>
+<h1>DSA · Placement Prep</h1>
+<p class="sub">12 phases in order · LeetCode + GFG · check off as you solve</p>
+<div class="pbar-wrap"><div class="pbar" id="pbar"></div></div>
+<p class="ptxt" id="ptxt">0 / 0 solved</p>
+<div id="app"></div>
+<script>
+// [name, slug, difficulty, source]
+// lc → leetcode.com/problems/[slug]/
+// gfg → geeksforgeeks.org/problems/[slug]/1
+const PLAN=[
+{ph:1,t:"Arrays & Two Pointers",p:[
+  ["Two Sum","two-sum","Easy","lc"],
+  ["Best Time to Buy & Sell Stock","best-time-to-buy-and-sell-stock","Easy","lc"],
+  ["Contains Duplicate","contains-duplicate","Easy","lc"],
+  ["Maximum Subarray","maximum-subarray","Medium","lc"],
+  ["Product of Array Except Self","product-of-array-except-self","Medium","lc"],
+  ["Move Zeroes","move-zeroes","Easy","lc"],
+  ["Squares of a Sorted Array","squares-of-a-sorted-array","Easy","lc"],
+  ["Merge Sorted Array","merge-sorted-array","Easy","lc"],
+  ["Majority Element","majority-element","Easy","lc"],
+  ["Missing Number","missing-number","Easy","lc"],
+  ["Leaders in an Array","leaders-in-an-array","Easy","gfg"],
+  ["Equilibrium Point","equilibrium-point","Easy","gfg"],
+  ["Stock Buy and Sell (Multiple Tx)","stock-buy-and-sell","Medium","gfg"],
+  ["Wave Array","wave-array","Easy","gfg"],
+  ["Chocolate Distribution Problem","chocolate-distribution-problem","Easy","gfg"],
+  ["Find Missing and Repeating","find-missing-and-repeating","Medium","gfg"],
+  ["Rearrange Array Alternately","rearrange-array-alternately","Medium","gfg"],
+  ["Maximum Index","maximum-index","Medium","gfg"],
+  ["Count Pairs with Given Sum","count-pairs-with-given-sum5022","Easy","gfg"],
+  ["Sort Colors","sort-colors","Medium","lc"],
+  ["Two Sum II","two-sum-ii-input-array-is-sorted","Medium","lc"],
+  ["3Sum","3sum","Medium","lc"],
+  ["Container With Most Water","container-with-most-water","Medium","lc"],
+  ["Trapping Rain Water","trapping-rain-water","Hard","lc"],
+  ["4Sum","4sum","Medium","lc"],
+  ["Remove Duplicates from Sorted II","remove-duplicates-from-sorted-array-ii","Medium","lc"],
+  ["Rotate Array","rotate-array","Medium","lc"],
+  ["Next Permutation","next-permutation","Medium","lc"],
+  ["First Missing Positive","first-missing-positive","Hard","lc"],
+  ["Subarray Sum Equals K","subarray-sum-equals-k","Medium","lc"],
+  ["Merge Without Extra Space","merge-two-sorted-arrays-without-extra-space","Hard","gfg"],
+  ["Count Inversions","count-inversions","Medium","gfg"],
+  ["Spiral Matrix","spiral-matrix","Medium","lc"],
+  ["Set Matrix Zeroes","set-matrix-zeroes","Medium","lc"],
+  ["Rotate Image","rotate-image","Medium","lc"],
+  ["Jump Game","jump-game","Medium","lc"],
+  ["Jump Game II","jump-game-ii","Medium","lc"],
+  ["Longest Consecutive Sequence","longest-consecutive-sequence","Medium","lc"],
+  ["Maximum Product Subarray","maximum-product-subarray","Medium","lc"],
+  ["Majority Element II","majority-element-ii","Medium","lc"],
+]},
 
-  <header class="header">
-    <div class="header-inner">
-      <div class="logo">
-        <span class="logo-mark">DSA Blueprint</span>
-        <span class="logo-sub">90 days · python + javascript</span>
-      </div>
-      <div class="header-stats">
-        <div class="h-stat">
-          <span class="n">90</span>
-          <span class="l">Days</span>
-        </div>
-        <div class="h-stat">
-          <span class="n">12</span>
-          <span class="l">Weeks</span>
-        </div>
-        <div class="h-stat">
-          <span class="n">~500</span>
-          <span class="l">Problems</span>
-        </div>
-        <div class="h-stat">
-          <span class="n">6</span>
-          <span class="l">Mocks</span>
-        </div>
-      </div>
+{ph:2,t:"Sliding Window, Hashing & Prefix Sum",p:[
+  ["Longest Substring Without Repeating","longest-substring-without-repeating-characters","Medium","lc"],
+  ["Find All Anagrams in a String","find-all-anagrams-in-a-string","Medium","lc"],
+  ["Permutation in String","permutation-in-string","Medium","lc"],
+  ["Minimum Window Substring","minimum-window-substring","Hard","lc"],
+  ["Sliding Window Maximum","sliding-window-maximum","Hard","lc"],
+  ["Minimum Size Subarray Sum","minimum-size-subarray-sum","Medium","lc"],
+  ["Subarray Product Less Than K","subarray-product-less-than-k","Medium","lc"],
+  ["Max Consecutive Ones III","max-consecutive-ones-iii","Medium","lc"],
+  ["Longest Subarray of 1s After Deleting One","longest-subarray-of-1s-after-deleting-one-element","Medium","lc"],
+  ["Contiguous Array","contiguous-array","Medium","lc"],
+  ["Subarray Sum Divisible by K","subarray-sums-divisible-by-k","Medium","lc"],
+  ["Count Nice Subarrays","count-number-of-nice-subarrays","Medium","lc"],
+  ["Minimum Ops to Reduce X to Zero","minimum-operations-to-reduce-x-to-zero","Medium","lc"],
+  ["First Negative in Every Window","first-negative-integer-in-every-window-of-size-k","Medium","gfg"],
+  ["Count Distinct Elements in Window","count-distinct-elements-in-every-window","Medium","gfg"],
+  ["Maximum of All Subarrays of Size K","maximum-of-all-subarrays-of-size-k","Medium","gfg"],
+  ["Range Sum Query Immutable","range-sum-query-immutable","Easy","lc"],
+  ["Group Anagrams","group-anagrams","Medium","lc"],
+  ["Top K Frequent Elements","top-k-frequent-elements","Medium","lc"],
+  ["Valid Anagram","valid-anagram","Easy","lc"],
+  ["Isomorphic Strings","isomorphic-strings","Easy","lc"],
+  ["4Sum II","4sum-ii","Medium","lc"],
+  ["LRU Cache","lru-cache","Medium","lc"],
+  ["Design HashMap","design-hashmap","Easy","lc"],
+  ["Insert Delete GetRandom O(1)","insert-delete-getrandom-o1","Medium","lc"],
+]},
+
+{ph:3,t:"Strings",p:[
+  ["Valid Palindrome","valid-palindrome","Easy","lc"],
+  ["Valid Palindrome II","valid-palindrome-ii","Easy","lc"],
+  ["Reverse Words in a String","reverse-words-in-a-string","Medium","lc"],
+  ["Longest Palindromic Substring","longest-palindromic-substring","Medium","lc"],
+  ["Palindromic Substrings","palindromic-substrings","Medium","lc"],
+  ["Longest Common Prefix","longest-common-prefix","Easy","lc"],
+  ["Decode String","decode-string","Medium","lc"],
+  ["Simplify Path","simplify-path","Medium","lc"],
+  ["Count and Say","count-and-say","Medium","lc"],
+  ["Repeated DNA Sequences","repeated-dna-sequences","Medium","lc"],
+  ["Roman to Integer","roman-to-integer","Easy","lc"],
+  ["Integer to Roman","integer-to-roman","Medium","lc"],
+  ["String Compression","string-compression","Medium","lc"],
+  ["Multiply Strings","multiply-strings","Medium","lc"],
+  ["Compare Version Numbers","compare-version-numbers","Medium","lc"],
+  ["Word Pattern","word-pattern","Easy","lc"],
+  ["Implement strStr()","find-the-index-of-the-first-occurrence-in-a-string","Easy","lc"],
+  ["Anagram","anagram","Easy","gfg"],
+  ["Parenthesis Checker","parenthesis-checker","Easy","gfg"],
+  ["KMP — Search Pattern in String","search-pattern-kmp-algorithm","Easy","gfg"],
+  ["Longest Common Substring","longest-common-substring","Medium","gfg"],
+  ["Wildcard Matching","wildcard-matching","Hard","lc"],
+  ["Regular Expression Matching","regular-expression-matching","Hard","lc"],
+]},
+
+{ph:4,t:"Binary Search",p:[
+  ["Binary Search","binary-search","Easy","lc"],
+  ["First Bad Version","first-bad-version","Easy","lc"],
+  ["Search Insert Position","search-insert-position","Easy","lc"],
+  ["Find Minimum in Rotated Sorted Array","find-minimum-in-rotated-sorted-array","Medium","lc"],
+  ["Search in Rotated Sorted Array","search-in-rotated-sorted-array","Medium","lc"],
+  ["Find Peak Element","find-peak-element","Medium","lc"],
+  ["Search a 2D Matrix","search-a-2d-matrix","Medium","lc"],
+  ["Kth Smallest Element in Matrix","kth-smallest-element-in-a-sorted-matrix","Medium","lc"],
+  ["Time Based Key-Value Store","time-based-key-value-store","Medium","lc"],
+  ["Koko Eating Bananas","koko-eating-bananas","Medium","lc"],
+  ["Capacity to Ship Packages","capacity-to-ship-packages-within-d-days","Medium","lc"],
+  ["Minimum Days to Make Bouquets","minimum-number-of-days-to-make-m-bouquets","Medium","lc"],
+  ["Split Array Largest Sum","split-array-largest-sum","Hard","lc"],
+  ["Median of Two Sorted Arrays","median-of-two-sorted-arrays","Hard","lc"],
+  ["Kth Smallest Pair Distance","find-k-th-smallest-pair-distance","Hard","lc"],
+  ["Aggressive Cows","aggressive-cows","Medium","gfg"],
+  ["Book Allocation Problem","allocate-minimum-number-of-pages","Medium","gfg"],
+  ["Painter's Partition Problem","painters-partition-problem","Hard","gfg"],
+  ["Square Root","square-root","Easy","gfg"],
+  ["Floor in a Sorted Array","floor-in-a-sorted-array","Easy","gfg"],
+]},
+
+{ph:5,t:"Stack & Monotonic Stack",p:[
+  ["Valid Parentheses","valid-parentheses","Easy","lc"],
+  ["Min Stack","min-stack","Medium","lc"],
+  ["Evaluate Reverse Polish Notation","evaluate-reverse-polish-notation","Medium","lc"],
+  ["Implement Stack using Queues","implement-stack-using-queues","Easy","lc"],
+  ["Implement Queue using Stacks","implement-queue-using-stacks","Easy","lc"],
+  ["Daily Temperatures","daily-temperatures","Medium","lc"],
+  ["Asteroid Collision","asteroid-collision","Medium","lc"],
+  ["Basic Calculator II","basic-calculator-ii","Medium","lc"],
+  ["Next Greater Element I","next-greater-element-i","Easy","lc"],
+  ["Next Greater Element II","next-greater-element-ii","Medium","lc"],
+  ["Largest Rectangle in Histogram","largest-rectangle-in-histogram","Hard","lc"],
+  ["Maximal Rectangle","maximal-rectangle","Hard","lc"],
+  ["Sum of Subarray Minimums","sum-of-subarray-minimums","Medium","lc"],
+  ["Longest Valid Parentheses","longest-valid-parentheses","Hard","lc"],
+  ["Remove K Digits","remove-k-digits","Medium","lc"],
+  ["132 Pattern","132-pattern","Medium","lc"],
+  ["Online Stock Span","online-stock-span","Medium","lc"],
+  ["Score of Parentheses","score-of-parentheses","Medium","lc"],
+  ["Remove Duplicate Letters","remove-duplicate-letters","Medium","lc"],
+  ["Stock Span Problem","stock-span-problem","Easy","gfg"],
+  ["The Celebrity Problem","the-celebrity-problem","Medium","gfg"],
+  ["Next Larger Element","next-larger-element","Easy","gfg"],
+]},
+
+{ph:6,t:"Sorting & Intervals",p:[
+  ["Merge Intervals","merge-intervals","Medium","lc"],
+  ["Insert Interval","insert-interval","Medium","lc"],
+  ["Non-overlapping Intervals","non-overlapping-intervals","Medium","lc"],
+  ["Minimum Arrows to Burst Balloons","minimum-number-of-arrows-to-burst-balloons","Medium","lc"],
+  ["Sort List","sort-list","Medium","lc"],
+  ["Largest Number","largest-number","Medium","lc"],
+  ["Car Fleet","car-fleet","Medium","lc"],
+  ["Sort Characters by Frequency","sort-characters-by-frequency","Medium","lc"],
+  ["Wiggle Sort II","wiggle-sort-ii","Medium","lc"],
+  ["Minimum Platforms","minimum-platforms","Medium","gfg"],
+  ["N Meetings in One Room","n-meetings-in-one-room","Easy","gfg"],
+  ["Job Sequencing Problem","job-sequencing-problem","Medium","gfg"],
+  ["Largest Number Formed from Array","largest-number-formed-from-an-array","Medium","gfg"],
+]},
+
+{ph:7,t:"Linked Lists",p:[
+  ["Reverse Linked List","reverse-linked-list","Easy","lc"],
+  ["Merge Two Sorted Lists","merge-two-sorted-lists","Easy","lc"],
+  ["Linked List Cycle","linked-list-cycle","Easy","lc"],
+  ["Linked List Cycle II (Find Start)","linked-list-cycle-ii","Medium","lc"],
+  ["Remove Nth Node from End","remove-nth-node-from-end-of-list","Medium","lc"],
+  ["Middle of Linked List","middle-of-the-linked-list","Easy","lc"],
+  ["Intersection of Two Linked Lists","intersection-of-two-linked-lists","Easy","lc"],
+  ["Palindrome Linked List","palindrome-linked-list","Easy","lc"],
+  ["Add Two Numbers","add-two-numbers","Medium","lc"],
+  ["Swap Nodes in Pairs","swap-nodes-in-pairs","Medium","lc"],
+  ["Odd Even Linked List","odd-even-linked-list","Medium","lc"],
+  ["Reorder List","reorder-list","Medium","lc"],
+  ["Reverse Linked List II","reverse-linked-list-ii","Medium","lc"],
+  ["Reverse Nodes in K-Group","reverse-nodes-in-k-group","Hard","lc"],
+  ["Copy List with Random Pointer","copy-list-with-random-pointer","Medium","lc"],
+  ["Design Linked List","design-linked-list","Medium","lc"],
+  ["Remove Duplicates from Sorted List II","remove-duplicates-from-sorted-list-ii","Medium","lc"],
+  ["Partition List","partition-list","Medium","lc"],
+  ["Rotate List","rotate-list","Medium","lc"],
+  ["Flatten Multilevel Doubly Linked List","flatten-a-multilevel-doubly-linked-list","Medium","lc"],
+  ["Detect Loop in Linked List","detect-loop-in-linked-list","Easy","gfg"],
+  ["Remove Loop in Linked List","remove-loop-in-linked-list","Medium","gfg"],
+  ["Reverse Linked List in Groups","reverse-a-linked-list-in-groups-of-given-size","Medium","gfg"],
+  ["Flattening a Linked List","flattening-a-linked-list","Medium","gfg"],
+]},
+
+{ph:8,t:"Binary Trees",p:[
+  ["Binary Tree Inorder Traversal","binary-tree-inorder-traversal","Easy","lc"],
+  ["Binary Tree Level Order Traversal","binary-tree-level-order-traversal","Medium","lc"],
+  ["Maximum Depth of Binary Tree","maximum-depth-of-binary-tree","Easy","lc"],
+  ["Symmetric Tree","symmetric-tree","Easy","lc"],
+  ["Invert Binary Tree","invert-binary-tree","Easy","lc"],
+  ["Diameter of Binary Tree","diameter-of-binary-tree","Easy","lc"],
+  ["Path Sum","path-sum","Easy","lc"],
+  ["Path Sum II","path-sum-ii","Medium","lc"],
+  ["Path Sum III","path-sum-iii","Medium","lc"],
+  ["Binary Tree Maximum Path Sum","binary-tree-maximum-path-sum","Hard","lc"],
+  ["Sum Root to Leaf Numbers","sum-root-to-leaf-numbers","Medium","lc"],
+  ["Binary Tree Zigzag Level Order","binary-tree-zigzag-level-order-traversal","Medium","lc"],
+  ["Binary Tree Right Side View","binary-tree-right-side-view","Medium","lc"],
+  ["Average of Levels in Binary Tree","average-of-levels-in-binary-tree","Easy","lc"],
+  ["Find Largest Value in Each Row","find-largest-value-in-each-tree-row","Medium","lc"],
+  ["Populating Next Right Pointers","populating-next-right-pointers-in-each-node","Medium","lc"],
+  ["Construct Tree from Preorder + Inorder","construct-binary-tree-from-preorder-and-inorder-traversal","Medium","lc"],
+  ["Construct Tree from Inorder + Postorder","construct-binary-tree-from-inorder-and-postorder-traversal","Medium","lc"],
+  ["Flatten Binary Tree to Linked List","flatten-binary-tree-to-linked-list","Medium","lc"],
+  ["Serialize and Deserialize Binary Tree","serialize-and-deserialize-binary-tree","Hard","lc"],
+  ["Maximum Width of Binary Tree","maximum-width-of-binary-tree","Medium","lc"],
+  ["Lowest Common Ancestor of BT","lowest-common-ancestor-of-a-binary-tree","Medium","lc"],
+  ["All Nodes Distance K in BT","all-nodes-distance-k-in-binary-tree","Medium","lc"],
+  ["Count Good Nodes in Binary Tree","count-good-nodes-in-binary-tree","Medium","lc"],
+  ["Vertical Order Traversal","vertical-order-traversal-of-a-binary-tree","Hard","lc"],
+  ["Left View of Binary Tree","left-view-of-binary-tree","Easy","gfg"],
+  ["Top View of Binary Tree","top-view-of-binary-tree","Medium","gfg"],
+  ["Bottom View of Binary Tree","bottom-view-of-binary-tree","Medium","gfg"],
+  ["Boundary Traversal of Binary Tree","boundary-traversal-of-binary-tree","Medium","gfg"],
+  ["Burning Tree","burning-tree","Hard","gfg"],
+]},
+
+{ph:9,t:"BST, Heap & Trie",p:[
+  ["Validate Binary Search Tree","validate-binary-search-tree","Medium","lc"],
+  ["Kth Smallest in BST","kth-smallest-element-in-a-bst","Medium","lc"],
+  ["LCA of BST","lowest-common-ancestor-of-a-binary-search-tree","Medium","lc"],
+  ["Insert into BST","insert-into-a-binary-search-tree","Medium","lc"],
+  ["Delete Node in BST","delete-node-in-a-bst","Medium","lc"],
+  ["Range Sum of BST","range-sum-of-bst","Easy","lc"],
+  ["Convert Sorted Array to BST","convert-sorted-array-to-binary-search-tree","Easy","lc"],
+  ["Recover BST","recover-binary-search-tree","Medium","lc"],
+  ["Convert BST to Greater Tree","convert-bst-to-greater-tree","Medium","lc"],
+  ["BST Iterator","binary-search-tree-iterator","Medium","lc"],
+  ["Trim a BST","trim-a-binary-search-tree","Medium","lc"],
+  ["Kth Largest in BST","kth-largest-element-in-bst","Medium","gfg"],
+  ["Kth Largest Element in Array","kth-largest-element-in-an-array","Medium","lc"],
+  ["K Closest Points to Origin","k-closest-points-to-origin","Medium","lc"],
+  ["Top K Frequent Words","top-k-frequent-words","Medium","lc"],
+  ["Task Scheduler","task-scheduler","Medium","lc"],
+  ["Reorganize String","reorganize-string","Medium","lc"],
+  ["Find Median from Data Stream","find-median-from-data-stream","Hard","lc"],
+  ["Merge K Sorted Lists","merge-k-sorted-lists","Hard","lc"],
+  ["IPO","ipo","Hard","lc"],
+  ["Implement Trie (Prefix Tree)","implement-trie-prefix-tree","Medium","lc"],
+  ["Add and Search Word","add-and-search-word-data-structure-design","Medium","lc"],
+  ["Word Search II","word-search-ii","Hard","lc"],
+  ["Replace Words","replace-words","Medium","lc"],
+  ["Maximum XOR of Two Numbers","maximum-xor-of-two-numbers-in-an-array","Medium","lc"],
+]},
+
+{ph:10,t:"DP — 1D & Sequences",p:[
+  ["Climbing Stairs","climbing-stairs","Easy","lc"],
+  ["House Robber","house-robber","Medium","lc"],
+  ["House Robber II","house-robber-ii","Medium","lc"],
+  ["Min Cost Climbing Stairs","min-cost-climbing-stairs","Easy","lc"],
+  ["Coin Change","coin-change","Medium","lc"],
+  ["Coin Change II","coin-change-ii","Medium","lc"],
+  ["Word Break","word-break","Medium","lc"],
+  ["Decode Ways","decode-ways","Medium","lc"],
+  ["Perfect Squares","perfect-squares","Medium","lc"],
+  ["Integer Break","integer-break","Medium","lc"],
+  ["Longest Increasing Subsequence","longest-increasing-subsequence","Medium","lc"],
+  ["Number of Longest Increasing Subsequence","number-of-longest-increasing-subsequence","Medium","lc"],
+  ["Longest Common Subsequence","longest-common-subsequence","Medium","lc"],
+  ["Delete Operation for Two Strings","delete-operation-for-two-strings","Medium","lc"],
+  ["Uncrossed Lines","uncrossed-lines","Medium","lc"],
+  ["Edit Distance","edit-distance","Medium","lc"],
+  ["Distinct Subsequences","distinct-subsequences","Hard","lc"],
+  ["Interleaving String","interleaving-string","Medium","lc"],
+  ["Minimum ASCII Delete Sum","minimum-ascii-delete-sum-for-two-strings","Medium","lc"],
+  ["Rod Cutting","rod-cutting","Medium","gfg"],
+  ["Egg Dropping Puzzle","egg-dropping-puzzle","Medium","gfg"],
+  ["Maximum Sum Increasing Subsequence","maximum-sum-increasing-subsequence","Medium","gfg"],
+  ["Painting Fence Algorithm","painting-fence","Medium","gfg"],
+]},
+
+{ph:11,t:"DP — Grid, Knapsack & Interval",p:[
+  ["Unique Paths","unique-paths","Medium","lc"],
+  ["Unique Paths II","unique-paths-ii","Medium","lc"],
+  ["Minimum Path Sum","minimum-path-sum","Medium","lc"],
+  ["Triangle","triangle","Medium","lc"],
+  ["Maximal Square","maximal-square","Medium","lc"],
+  ["Dungeon Game","dungeon-game","Hard","lc"],
+  ["Partition Equal Subset Sum","partition-equal-subset-sum","Medium","lc"],
+  ["Target Sum","target-sum","Medium","lc"],
+  ["Last Stone Weight II","last-stone-weight-ii","Medium","lc"],
+  ["Ones and Zeroes","ones-and-zeroes","Medium","lc"],
+  ["0-1 Knapsack Problem","0-1-knapsack-problem","Medium","gfg"],
+  ["Subset Sum Problem","subset-sum-problem","Medium","gfg"],
+  ["Count of Subsets with Given Sum","count-of-subsets-sum-with-a-given-sum","Medium","gfg"],
+  ["Minimum Sum Partition","minimum-sum-partition","Hard","gfg"],
+  ["Burst Balloons","burst-balloons","Hard","lc"],
+  ["Stone Game","stone-game","Medium","lc"],
+  ["Palindrome Partitioning II","palindrome-partitioning-ii","Hard","lc"],
+  ["Matrix Chain Multiplication","matrix-chain-multiplication0","Hard","gfg"],
+  ["Best Time to Buy & Sell with Cooldown","best-time-to-buy-and-sell-stock-with-cooldown","Medium","lc"],
+  ["Best Time to Buy & Sell with Fee","best-time-to-buy-and-sell-stock-with-transaction-fee","Medium","lc"],
+  ["Best Time to Buy & Sell Stock III","best-time-to-buy-and-sell-stock-iii","Hard","lc"],
+  ["Best Time to Buy & Sell Stock IV","best-time-to-buy-and-sell-stock-iv","Hard","lc"],
+  ["Job Scheduling","job-scheduling","Hard","lc"],
+  ["Cherry Pickup II","cherry-pickup-ii","Hard","lc"],
+]},
+
+{ph:12,t:"Graphs & Backtracking",p:[
+  ["Number of Islands","number-of-islands","Medium","lc"],
+  ["Clone Graph","clone-graph","Medium","lc"],
+  ["Course Schedule","course-schedule","Medium","lc"],
+  ["Course Schedule II","course-schedule-ii","Medium","lc"],
+  ["Number of Connected Components","number-of-connected-components-in-an-undirected-graph","Medium","lc"],
+  ["Max Area of Island","max-area-of-island","Medium","lc"],
+  ["Rotting Oranges","rotting-oranges","Medium","lc"],
+  ["01 Matrix","01-matrix","Medium","lc"],
+  ["Shortest Bridge","shortest-bridge","Medium","lc"],
+  ["Pacific Atlantic Water Flow","pacific-atlantic-water-flow","Medium","lc"],
+  ["Surrounded Regions","surrounded-regions","Medium","lc"],
+  ["Redundant Connection","redundant-connection","Medium","lc"],
+  ["Accounts Merge","accounts-merge","Medium","lc"],
+  ["Word Ladder","word-ladder","Hard","lc"],
+  ["Open the Lock","open-the-lock","Medium","lc"],
+  ["Network Delay Time","network-delay-time","Medium","lc"],
+  ["Cheapest Flights Within K Stops","cheapest-flights-within-k-stops","Medium","lc"],
+  ["Path With Minimum Effort","path-with-minimum-effort","Medium","lc"],
+  ["Swim in Rising Water","swim-in-rising-water","Hard","lc"],
+  ["Topological Sort","topological-sort","Medium","gfg"],
+  ["Detect Cycle in Directed Graph","detect-cycle-in-a-directed-graph","Medium","gfg"],
+  ["Detect Cycle in Undirected Graph","detect-cycle-in-an-undirected-graph","Easy","gfg"],
+  ["Flood Fill Algorithm","flood-fill-algorithm","Easy","gfg"],
+  ["Minimum Spanning Tree","minimum-spanning-tree","Medium","gfg"],
+  ["Bellman-Ford","bellman-ford","Medium","gfg"],
+  ["Dijkstra's Algorithm","implementing-dijkstra-set-1-adjacency-matrix","Medium","gfg"],
+  ["Subsets","subsets","Medium","lc"],
+  ["Subsets II","subsets-ii","Medium","lc"],
+  ["Permutations","permutations","Medium","lc"],
+  ["Permutations II","permutations-ii","Medium","lc"],
+  ["Combination Sum","combination-sum","Medium","lc"],
+  ["Combination Sum II","combination-sum-ii","Medium","lc"],
+  ["N-Queens","n-queens","Hard","lc"],
+  ["Word Search","word-search","Medium","lc"],
+  ["Sudoku Solver","sudoku-solver","Hard","lc"],
+  ["Palindrome Partitioning","palindrome-partitioning","Medium","lc"],
+  ["Rat in a Maze Problem","rat-in-a-maze-problem","Medium","gfg"],
+  ["M Coloring Problem","m-coloring-problem","Medium","gfg"],
+  ["Expression Add Operators","expression-add-operators","Hard","lc"],
+]},
+];
+
+const TOTAL = PLAN.reduce((s,ph)=>s+ph.p.length,0);
+const KEY = 'dsa_done_v2';
+const DONE = new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+
+function uid(slug,src){return slug+'|'+src;}
+
+function updateProgress(){
+  const done=DONE.size;
+  document.getElementById('pbar').style.width=(done/TOTAL*100)+'%';
+  document.getElementById('ptxt').textContent=done+' / '+TOTAL+' solved';
+  PLAN.forEach((ph,i)=>{
+    const phDone=ph.p.filter(p=>DONE.has(uid(p[1],p[3]))).length;
+    const el=document.getElementById('pp'+i);
+    if(el) el.textContent=phDone+'/'+ph.p.length;
+  });
+}
+
+function toggle(id){
+  const el=document.getElementById('pr-'+id);
+  if(!el)return;
+  if(DONE.has(id)){DONE.delete(id);el.classList.remove('done');}
+  else{DONE.add(id);el.classList.add('done');}
+  localStorage.setItem(KEY,JSON.stringify([...DONE]));
+  updateProgress();
+}
+
+let n=0;
+function row([name,slug,diff,src]){
+  n++;
+  const id=uid(slug,src);
+  const done=DONE.has(id);
+  const url=src==='lc'
+    ?`https://leetcode.com/problems/${slug}/`
+    :`https://www.geeksforgeeks.org/problems/${slug}/1`;
+  return `<div class="problem${done?' done':''}" id="pr-${id}">
+    <input type="checkbox"${done?' checked':''} onchange="toggle('${id}')">
+    <span class="num">${n}</span>
+    <a href="${url}" target="_blank">${name}</a>
+    <span class="tag ${diff}">${diff}</span>
+    <span class="src ${src}">${src==='lc'?'LC':'GFG'}</span>
+  </div>`;
+}
+
+function phase(w,i){
+  const phDone=w.p.filter(p=>DONE.has(uid(p[1],p[3]))).length;
+  return `<div class="phase">
+    <div class="ph-head" onclick="this.parentElement.classList.toggle('open')">
+      <span>Phase ${w.ph} · ${w.t}</span>
+      <span class="ph-meta">
+        <span class="ph-done" id="pp${i}">${phDone}/${w.p.length}</span>
+        <span>${w.p.length} problems</span>
+      </span>
     </div>
-  </header>
+    <div class="ph-body">${w.p.map(row).join('')}</div>
+  </div>`;
+}
 
-  <div class="layout">
-    <nav class="sidebar" id="sidebar"></nav>
-    <main class="main" id="main"></main>
-  </div>
-
-  <script>
-    const PLAN = [
-      {
-        week: 1, month: 1,
-        title: "Arrays & Two Pointers",
-        tag: "Month 1 · Week 1",
-        focus: "The foundation of everything. Master array manipulation + two-pointer pattern — these two alone solve ~25% of interview problems.",
-        mentor: "Don't rush this week. <strong>Two Pointers is the most underrated pattern</strong> in DSA prep. Nail every variation here — inward, outward, fast/slow. You'll use this in trees, linked lists, and strings too. Code every solution in Python first, then optionally JS. Target: understand before you memorize.",
-        days: [
-          {
-            num: 1, title: "Array Warm-up", note: "Start smooth — these feel easy but carry patterns you'll reuse. Focus on understanding time/space complexity of each.", problems: [
-              { name: "Two Sum", lc: "1", diff: "easy" },
-              { name: "Best Time to Buy and Sell Stock", lc: "121", diff: "easy" },
-              { name: "Contains Duplicate", lc: "217", diff: "easy" },
-              { name: "Maximum Subarray (Kadane's)", lc: "53", diff: "medium" },
-              { name: "Product of Array Except Self", lc: "238", diff: "medium" },
-            ]
-          },
-          {
-            num: 2, title: "Two Pointers — Core", note: "The bread and butter. Inward two pointers (from both ends) is today's focus. Understand WHEN to move which pointer.", problems: [
-              { name: "Valid Palindrome", lc: "125", diff: "easy" },
-              { name: "Two Sum II (Sorted Input)", lc: "167", diff: "medium" },
-              { name: "3Sum", lc: "15", diff: "medium" },
-              { name: "Container With Most Water", lc: "11", diff: "medium" },
-              { name: "Sort Colors (Dutch Flag)", lc: "75", diff: "medium" },
-              { name: "Move Zeroes", lc: "283", diff: "easy" },
-            ]
-          },
-          {
-            num: 3, title: "Two Pointers — Hard Push", note: "Trapping Rain Water is a rite of passage. Spend 30 min on it before looking at hints. This single problem teaches you 3 different approaches.", problems: [
-              { name: "Trapping Rain Water", lc: "42", diff: "hard" },
-              { name: "4Sum", lc: "18", diff: "medium" },
-              { name: "Remove Duplicates from Sorted Array II", lc: "80", diff: "medium" },
-              { name: "Squares of a Sorted Array", lc: "977", diff: "easy" },
-              { name: "Merge Sorted Array", lc: "88", diff: "easy" },
-            ]
-          },
-          {
-            num: 4, title: "Array Patterns", note: "Next Permutation looks scary but the algorithm is elegant. Rotate Array teaches the reverse-trick which appears in many places.", problems: [
-              { name: "Rotate Array", lc: "189", diff: "medium" },
-              { name: "Next Permutation", lc: "31", diff: "medium" },
-              { name: "Find Minimum in Rotated Sorted Array", lc: "153", diff: "medium" },
-              { name: "First Missing Positive", lc: "41", diff: "hard" },
-              { name: "Subarray Sum Equals K", lc: "560", diff: "medium" },
-              { name: "Majority Element", lc: "169", diff: "easy" },
-            ]
-          },
-          {
-            num: 5, title: "Matrix (2D Arrays)", note: "Matrix problems are just 2D array problems. Treat each row as an array. Practice rotating index math on paper before coding.", problems: [
-              { name: "Spiral Matrix", lc: "54", diff: "medium" },
-              { name: "Set Matrix Zeroes", lc: "73", diff: "medium" },
-              { name: "Rotate Image", lc: "48", diff: "medium" },
-              { name: "Search a 2D Matrix", lc: "74", diff: "medium" },
-              { name: "Game of Life", lc: "289", diff: "medium" },
-            ]
-          },
-          {
-            num: 6, title: "Array Review + Hard", note: "Jump Game II — try greedy first, then DP. Longest Consecutive is the 'Goldilocks' problem: too slow with sorting, just right with hash.", problems: [
-              { name: "Jump Game", lc: "55", diff: "medium" },
-              { name: "Jump Game II", lc: "45", diff: "medium" },
-              { name: "Longest Consecutive Sequence", lc: "128", diff: "medium" },
-              { name: "Majority Element II", lc: "229", diff: "medium" },
-              { name: "Maximum Product Subarray", lc: "152", diff: "medium" },
-            ]
-          },
-          { num: 7, title: "Rest & Revise", rest: true, note: "Review every solution you couldn't solve this week. Re-solve without looking. Write the time/space complexity for each pattern learned." },
-        ]
-      },
-      {
-        week: 2, month: 1,
-        title: "Sliding Window + Prefix Sum + Hashing",
-        tag: "Month 1 · Week 2",
-        focus: "Three patterns that appear constantly together. Sliding Window alone covers ~15% of string/array interview questions.",
-        mentor: "Sliding Window has two forms: <strong>fixed-size</strong> (window width is given) and <strong>variable-size</strong> (you shrink/expand based on condition). Know both cold. Prefix Sum is the secret weapon for subarray problems — once you see it, you can't unsee it.",
-        days: [
-          {
-            num: 8, title: "Sliding Window — Fixed Size", note: "Fixed window: sum/average of k consecutive elements. The trick is 'add new element, remove old element' — no nested loops.", problems: [
-              { name: "Find All Anagrams in a String", lc: "438", diff: "medium" },
-              { name: "Permutation in String", lc: "567", diff: "medium" },
-              { name: "Substrings of Size Three with Distinct Characters", lc: "1876", diff: "easy" },
-              { name: "Maximum Points You Can Obtain from Cards", lc: "1423", diff: "medium" },
-              { name: "Sliding Window Maximum", lc: "239", diff: "hard" },
-            ]
-          },
-          {
-            num: 9, title: "Sliding Window — Variable Size", note: "The while-loop shrink pattern is critical here. You EXPAND right, then SHRINK left when constraint is violated. Practice until instinctive.", problems: [
-              { name: "Minimum Size Subarray Sum", lc: "209", diff: "medium" },
-              { name: "Longest Substring Without Repeating Characters", lc: "3", diff: "medium" },
-              { name: "Longest Repeating Character Replacement", lc: "424", diff: "medium" },
-              { name: "Minimum Window Substring", lc: "76", diff: "hard" },
-              { name: "Fruit Into Baskets", lc: "904", diff: "medium" },
-            ]
-          },
-          {
-            num: 10, title: "Prefix Sum", note: "Build prefix[i] = sum of first i elements. Then range sum [l,r] = prefix[r+1] - prefix[l]. This pattern kills O(n²) brute force.", problems: [
-              { name: "Range Sum Query - Immutable", lc: "303", diff: "easy" },
-              { name: "Subarray Sum Equals K", lc: "560", diff: "medium" },
-              { name: "Continuous Subarray Sum", lc: "523", diff: "medium" },
-              { name: "Count Number of Nice Subarrays", lc: "1248", diff: "medium" },
-              { name: "Subarray Sums Divisible by K", lc: "974", diff: "medium" },
-            ]
-          },
-          {
-            num: 11, title: "Hashing Fundamentals", note: "Hashing is about trading SPACE for TIME. If you're doing O(n²) nested loops, ask: can a dict/set help me cut to O(n)?", problems: [
-              { name: "Group Anagrams", lc: "49", diff: "medium" },
-              { name: "Top K Frequent Elements", lc: "347", diff: "medium" },
-              { name: "Valid Anagram", lc: "242", diff: "easy" },
-              { name: "Isomorphic Strings", lc: "205", diff: "easy" },
-              { name: "4Sum II", lc: "454", diff: "medium" },
-              { name: "Longest Common Subsequence (preview)", lc: "1143", diff: "medium" },
-            ]
-          },
-          {
-            num: 12, title: "Hashing + LRU Cache", note: "LRU Cache combines HashMap + Doubly Linked List. This is a top-10 interview question. Understand the design, not just the code.", problems: [
-              { name: "Design HashMap", lc: "706", diff: "easy" },
-              { name: "Brick Wall", lc: "554", diff: "medium" },
-              { name: "Encode and Decode TinyURL", lc: "535", diff: "medium" },
-              { name: "LRU Cache", lc: "146", diff: "medium" },
-              { name: "Insert Delete GetRandom O(1)", lc: "380", diff: "medium" },
-            ]
-          },
-          {
-            num: 13, title: "Mixed: SW + Prefix + Hash", note: "These three patterns now blur together. Most hard array problems are a combination of two of them. Practice identifying WHICH applies.", problems: [
-              { name: "Minimum Operations to Reduce X to Zero", lc: "1658", diff: "medium" },
-              { name: "Subarray Product Less Than K", lc: "713", diff: "medium" },
-              { name: "Longest Subarray of 1s After Deleting One Element", lc: "1493", diff: "medium" },
-              { name: "Number of Sub-arrays of Size K and Avg ≥ Threshold", lc: "1343", diff: "medium" },
-              { name: "Contiguous Array", lc: "525", diff: "medium" },
-            ]
-          },
-          { num: 14, title: "Rest & Revise", rest: true, note: "Pick your 3 weakest problems from Week 2 and re-solve them from scratch. Practice explaining Sliding Window pattern out loud — interview simulation." },
-        ]
-      },
-      {
-        week: 3, month: 1,
-        title: "Strings + Binary Search",
-        tag: "Month 1 · Week 3",
-        focus: "Strings = arrays of characters. Binary Search = the most misunderstood O(log n) tool — it's not just 'search in sorted array'.",
-        mentor: "Binary Search has 3 templates — know them all. <strong>Template 3 (search the answer space)</strong> is the most powerful: 'Can I do X in Y time?' — binary search on Y. This alone solves problems like Koko Eating Bananas, Capacity to Ship Packages, etc.",
-        days: [
-          {
-            num: 15, title: "String Fundamentals", note: "Most string problems are array problems. Decode String teaches you stack-based parsing — a pattern that appears in calculator/expression problems too.", problems: [
-              { name: "Valid Parentheses (Stack Preview)", lc: "20", diff: "easy" },
-              { name: "Reverse Words in a String", lc: "151", diff: "medium" },
-              { name: "String Compression", lc: "443", diff: "medium" },
-              { name: "Decode String", lc: "394", diff: "medium" },
-              { name: "Valid Palindrome II", lc: "680", diff: "easy" },
-              { name: "Simplify Path", lc: "71", diff: "medium" },
-            ]
-          },
-          {
-            num: 16, title: "Palindromes & Patterns", note: "Longest Palindromic Substring: expand from center is the elegant O(n²) solution. Don't jump to Manacher's algorithm — too complex for interviews.", problems: [
-              { name: "Longest Palindromic Substring", lc: "5", diff: "medium" },
-              { name: "Palindromic Substrings", lc: "647", diff: "medium" },
-              { name: "Longest Palindrome", lc: "409", diff: "easy" },
-              { name: "Count and Say", lc: "38", diff: "medium" },
-              { name: "Repeated DNA Sequences", lc: "187", diff: "medium" },
-            ]
-          },
-          {
-            num: 17, title: "Binary Search — Basics", note: "Master your base template: lo=0, hi=n-1, while lo<=hi. Nail down: do you return lo or hi? When is mid excluded? Handle this before moving on.", problems: [
-              { name: "Binary Search", lc: "704", diff: "easy" },
-              { name: "Find Minimum in Rotated Sorted Array", lc: "153", diff: "medium" },
-              { name: "Search in Rotated Sorted Array", lc: "33", diff: "medium" },
-              { name: "Find Peak Element", lc: "162", diff: "medium" },
-              { name: "Kth Smallest Element in Sorted Matrix", lc: "378", diff: "medium" },
-              { name: "Search in Rotated Sorted Array II", lc: "81", diff: "medium" },
-            ]
-          },
-          {
-            num: 18, title: "Binary Search on Answer", note: "This is the level-up. You're not searching an array, you're searching a RANGE of possible answers. Key question: 'Is this answer feasible?'", problems: [
-              { name: "Koko Eating Bananas", lc: "875", diff: "medium" },
-              { name: "Capacity to Ship Packages Within D Days", lc: "1011", diff: "medium" },
-              { name: "Minimum Number of Days to Make m Bouquets", lc: "1482", diff: "medium" },
-              { name: "Split Array Largest Sum", lc: "410", diff: "hard" },
-              { name: "Time Based Key-Value Store", lc: "981", diff: "medium" },
-            ]
-          },
-          {
-            num: 19, title: "Binary Search — Hard", note: "Median of Two Sorted Arrays is a famous hard that FAANG loves. Spend full 45 min thinking before hints. The insight is beautiful.", problems: [
-              { name: "Median of Two Sorted Arrays", lc: "4", diff: "hard" },
-              { name: "Find K-th Smallest Pair Distance", lc: "719", diff: "hard" },
-              { name: "Minimum Time to Complete Trips", lc: "2187", diff: "medium" },
-              { name: "Magnetic Force Between Two Balls", lc: "1552", diff: "medium" },
-              { name: "Maximum Running Time of N Computers", lc: "2141", diff: "hard" },
-            ]
-          },
-          {
-            num: 20, title: "String + BS Mixed", note: "These problems require combining patterns. If you're stuck, ask: 'Is there a sorted order I can binary search on? Is there a hash pattern here?'", problems: [
-              { name: "Longest Duplicate Substring", lc: "1044", diff: "hard" },
-              { name: "Smallest Letter Greater Than Target", lc: "744", diff: "easy" },
-              { name: "Count Pairs Whose Sum is Less Than Target", lc: "2824", diff: "easy" },
-              { name: "Minimum Number of Moves to Seat Everyone", lc: "2037", diff: "easy" },
-            ]
-          },
-          { num: 21, title: "Rest & Revise", rest: true, note: "Re-implement Binary Search from memory 3 times on paper with different templates. This week's muscle memory matters for Month 3 DP problems." },
-        ]
-      },
-      {
-        week: 4, month: 1,
-        title: "Sorting + Intervals + Stack",
-        tag: "Month 1 · Week 4",
-        focus: "Intervals are scheduling problems. Stacks solve 'next greater/smaller' type problems. Both appear often in system design rounds too.",
-        mentor: "Sort first, think later — this is the golden rule for interval problems. <strong>Always sort by start time unless told otherwise.</strong> For stacks, the Monotonic Stack pattern (decreasing/increasing stack) is the key unlocking daily temperatures, histogram, and rectangle problems.",
-        days: [
-          {
-            num: 22, title: "Sorting + Intervals Basics", note: "Merge Intervals: sort by start, then check if current.start <= prev.end. If yes, merge. If no, append. That's it. Master this logic.", problems: [
-              { name: "Merge Intervals", lc: "56", diff: "medium" },
-              { name: "Insert Interval", lc: "57", diff: "medium" },
-              { name: "Non-overlapping Intervals", lc: "435", diff: "medium" },
-              { name: "Minimum Number of Arrows to Burst Balloons", lc: "452", diff: "medium" },
-              { name: "Meeting Rooms II", lc: "253", diff: "medium" },
-            ]
-          },
-          {
-            num: 23, title: "Sorting Tricks", note: "Largest Number is a classic custom comparator problem. Task Scheduler is a greedy/math gem.", problems: [
-              { name: "Largest Number", lc: "179", diff: "medium" },
-              { name: "Task Scheduler", lc: "621", diff: "medium" },
-              { name: "Car Fleet", lc: "853", diff: "medium" },
-              { name: "Sort List (Merge Sort on LL)", lc: "148", diff: "medium" },
-              { name: "Wiggle Sort II", lc: "324", diff: "medium" },
-            ]
-          },
-          {
-            num: 24, title: "Stack — Core", note: "Min Stack: use two stacks or push (val, current_min) pairs. Evaluate RPL: when you see an operator, pop two operands and push result.", problems: [
-              { name: "Min Stack", lc: "155", diff: "medium" },
-              { name: "Evaluate Reverse Polish Notation", lc: "150", diff: "medium" },
-              { name: "Daily Temperatures", lc: "739", diff: "medium" },
-              { name: "Asteroid Collision", lc: "735", diff: "medium" },
-              { name: "Basic Calculator II", lc: "227", diff: "medium" },
-            ]
-          },
-          {
-            num: 25, title: "Monotonic Stack", note: "Monotonic Stack = keep the stack always increasing or decreasing. When a new element 'breaks' the order, you pop and process.", problems: [
-              { name: "Next Greater Element I", lc: "496", diff: "easy" },
-              { name: "Next Greater Element II (Circular)", lc: "503", diff: "medium" },
-              { name: "Largest Rectangle in Histogram", lc: "84", diff: "hard" },
-              { name: "Maximal Rectangle", lc: "85", diff: "hard" },
-              { name: "Sum of Subarray Minimums", lc: "907", diff: "medium" },
-            ]
-          },
-          {
-            num: 26, title: "Stack Advanced", note: "132 Pattern and Online Stock Span are classic monotonic stack problems. These appear in real FAANG rounds.", problems: [
-              { name: "Longest Valid Parentheses", lc: "32", diff: "hard" },
-              { name: "Remove K Digits", lc: "402", diff: "medium" },
-              { name: "132 Pattern", lc: "456", diff: "medium" },
-              { name: "Online Stock Span", lc: "901", diff: "medium" },
-              { name: "Score of Parentheses", lc: "856", diff: "medium" },
-            ]
-          },
-          {
-            num: 27, title: "Month 1 Mock Interview", note: "🎯 MOCK DAY: Set a timer for 2 hours. Solve 4 problems cold — 2 from Arrays/Sliding Window + 1 Stack + 1 Binary Search. Grade yourself: did you get brute force in 10 min? Optimal in 30?", problems: [
-              { name: "Three Sum Closest", lc: "16", diff: "medium" },
-              { name: "Longest Substring with At Most Two Distinct Characters", lc: "159", diff: "medium" },
-              { name: "Maximum Width Ramp", lc: "962", diff: "medium" },
-              { name: "Minimum Time to Finish the Race", lc: "2188", diff: "hard" },
-            ]
-          },
-          { num: 28, title: "Rest & Revise", rest: true, note: "End of Month 1! You now have: Two Pointers, Sliding Window, Hashing, Prefix Sum, Binary Search, Sorting, Intervals, Stack. That's ~40% of all interview problems." },
-        ]
-      },
-      {
-        week: 5, month: 2,
-        title: "Linked Lists",
-        tag: "Month 2 · Week 5",
-        focus: "Pointers, pointers, pointers. Linked Lists test your ability to manipulate references without losing nodes. Draw the state on paper every single time.",
-        mentor: "<strong>Always draw the before/after state for LL problems.</strong> Most bugs come from incorrect pointer reassignment order. Use a dummy head node for problems involving deletion/insertion at head — it simplifies edge cases enormously. Fast/slow pointer is essentially Two Pointers applied to linked lists.",
-        days: [
-          {
-            num: 29, title: "Linked List Basics", note: "These feel easy but the goal is to write clean, pointer-safe code. Reverse Linked List is the #1 warmup — do it iteratively AND recursively.", problems: [
-              { name: "Reverse Linked List", lc: "206", diff: "easy" },
-              { name: "Merge Two Sorted Lists", lc: "21", diff: "easy" },
-              { name: "Linked List Cycle", lc: "141", diff: "easy" },
-              { name: "Linked List Cycle II (Find start)", lc: "142", diff: "medium" },
-              { name: "Remove Nth Node From End", lc: "19", diff: "medium" },
-              { name: "Middle of the Linked List", lc: "876", diff: "easy" },
-            ]
-          },
-          {
-            num: 30, title: "Linked List Medium", note: "Reorder List is the ultimate LL combo: find middle + reverse second half + merge. This pattern is in top 5 most asked LL problems.", problems: [
-              { name: "Add Two Numbers", lc: "2", diff: "medium" },
-              { name: "Swap Nodes in Pairs", lc: "24", diff: "medium" },
-              { name: "Odd Even Linked List", lc: "328", diff: "medium" },
-              { name: "Reorder List", lc: "143", diff: "medium" },
-              { name: "Reverse Linked List II", lc: "92", diff: "medium" },
-            ]
-          },
-          {
-            num: 31, title: "Linked List Hard", note: "Merge K Sorted Lists using a min-heap is the intended solution. Copy List with Random Pointer: use a hash map old→new node.", problems: [
-              { name: "Merge K Sorted Lists", lc: "23", diff: "hard" },
-              { name: "Reverse Nodes in k-Group", lc: "25", diff: "hard" },
-              { name: "Copy List with Random Pointer", lc: "138", diff: "medium" },
-              { name: "LRU Cache (LL + HashMap)", lc: "146", diff: "medium" },
-              { name: "Design Linked List", lc: "707", diff: "medium" },
-            ]
-          },
-          {
-            num: 32, title: "Fast/Slow Pointer", note: "Floyd's cycle detection is the foundation. Fast moves 2x, slow moves 1x. When they meet, you're at the cycle start. Prove this math once on paper.", problems: [
-              { name: "Happy Number", lc: "202", diff: "easy" },
-              { name: "Find the Duplicate Number", lc: "287", diff: "medium" },
-              { name: "Intersection of Two Linked Lists", lc: "160", diff: "easy" },
-              { name: "Palindrome Linked List", lc: "234", diff: "easy" },
-              { name: "Remove Duplicates from Sorted List II", lc: "82", diff: "medium" },
-            ]
-          },
-          {
-            num: 33, title: "Linked List Review", note: "Partition List: two-pointer (maintain two separate lists, connect at end). Rotate List: find tail, connect to head, find new cut point.", problems: [
-              { name: "Partition List", lc: "86", diff: "medium" },
-              { name: "Rotate List", lc: "61", diff: "medium" },
-              { name: "Remove Linked List Elements", lc: "203", diff: "easy" },
-              { name: "Flatten a Multilevel Doubly Linked List", lc: "430", diff: "medium" },
-              { name: "Convert Binary Number in LL to Integer", lc: "1290", diff: "easy" },
-            ]
-          },
-          {
-            num: 34, title: "Mixed Review: Week 1–5", note: "Pick 5 problems from your weakest area in Month 1+2. Use LeetCode tags to identify. Goal: solidify before moving to trees.", problems: [
-              { name: "Trapping Rain Water (revisit)", lc: "42", diff: "hard" },
-              { name: "Minimum Window Substring (revisit)", lc: "76", diff: "hard" },
-              { name: "LRU Cache (revisit)", lc: "146", diff: "medium" },
-              { name: "Largest Rectangle in Histogram (revisit)", lc: "84", diff: "hard" },
-              { name: "Merge K Sorted Lists (revisit)", lc: "23", diff: "hard" },
-            ]
-          },
-          { num: 35, title: "Rest & Revise", rest: true, note: "Linked Lists done. Rest day but spend 20 min: can you implement a full singly linked list class with insert/delete/reverse from memory? That's your checkpoint." },
-        ]
-      },
-      {
-        week: 6, month: 2,
-        title: "Stacks + Queues + BFS Patterns",
-        tag: "Month 2 · Week 6",
-        focus: "Queue-based BFS is your entry into graph traversal. This week bridges data structures → graph algorithms. Every tree level-order problem is BFS.",
-        mentor: "BFS on grids and BFS on graphs use the EXACT same template: <strong>queue + visited set + process neighbors</strong>. Practice until you can write the BFS template blindfolded. Also: Deque (double-ended queue) is the key data structure for sliding window maximum and monotonic queue problems.",
-        days: [
-          {
-            num: 36, title: "Queue Patterns", note: "Implement stack/queue using each other — common interview question. Tests if you understand the FIFO vs LIFO principle at a deep level.", problems: [
-              { name: "Implement Queue Using Stacks", lc: "232", diff: "easy" },
-              { name: "Implement Stack Using Queues", lc: "225", diff: "easy" },
-              { name: "Design Circular Queue", lc: "622", diff: "medium" },
-              { name: "First Unique Character in a String", lc: "387", diff: "easy" },
-              { name: "Design Hit Counter", lc: "362", diff: "medium" },
-            ]
-          },
-          {
-            num: 37, title: "Deque + Monotonic Queue", note: "Sliding Window Maximum with deque is a must-know. The deque stores indices. You remove from front (out of window) and back (smaller than current).", problems: [
-              { name: "Sliding Window Maximum", lc: "239", diff: "hard" },
-              { name: "Jump Game VI", lc: "1696", diff: "medium" },
-              { name: "Constrained Subsequence Sum", lc: "1425", diff: "hard" },
-              { name: "Maximum Value at a Given Index in Bounded Array", lc: "1802", diff: "medium" },
-              { name: "Minimum Number of Coins for Fruits", lc: "2944", diff: "medium" },
-            ]
-          },
-          {
-            num: 38, title: "BFS on Grids", note: "Grid BFS template: directions = [(0,1),(1,0),(0,-1),(-1,0)]. Use a visited set or modify grid in-place. Practice until this template is automatic.", problems: [
-              { name: "Rotting Oranges", lc: "994", diff: "medium" },
-              { name: "01 Matrix (Distance to Nearest 0)", lc: "542", diff: "medium" },
-              { name: "Shortest Bridge", lc: "934", diff: "medium" },
-              { name: "Pacific Atlantic Water Flow", lc: "417", diff: "medium" },
-              { name: "As Far from Land as Possible", lc: "1162", diff: "medium" },
-            ]
-          },
-          {
-            num: 39, title: "BFS — Word/State Problems", note: "Word Ladder is a classic where BFS is NOT optional — it finds the SHORTEST path. Think of each word as a graph node connected to its 1-char-diff neighbors.", problems: [
-              { name: "Word Ladder", lc: "127", diff: "hard" },
-              { name: "Open the Lock", lc: "752", diff: "medium" },
-              { name: "Minimum Genetic Mutation", lc: "433", diff: "medium" },
-              { name: "Snakes and Ladders", lc: "909", diff: "medium" },
-              { name: "Jump Game III", lc: "1306", diff: "medium" },
-            ]
-          },
-          {
-            num: 40, title: "Stack Advanced Review", note: "Exclusive Time of Functions: stack-based simulation. Read the problem as a log parser — push on start, pop on end, track time.", problems: [
-              { name: "Exclusive Time of Functions", lc: "636", diff: "medium" },
-              { name: "Remove All Adjacent Duplicates in String II", lc: "1209", diff: "medium" },
-              { name: "Design Browser History", lc: "1472", diff: "medium" },
-              { name: "Maximum Width Ramp", lc: "962", diff: "medium" },
-              { name: "Robot Bounded in Circle", lc: "1041", diff: "medium" },
-            ]
-          },
-          {
-            num: 41, title: "Week 5–6 Review", note: "Weak area focus day. Go back to any LL or Stack/Queue problem you solved by looking at hints. Re-solve it independently.", problems: [
-              { name: "Copy List with Random Pointer (revisit)", lc: "138", diff: "medium" },
-              { name: "Rotting Oranges (revisit)", lc: "994", diff: "medium" },
-              { name: "Word Ladder (revisit)", lc: "127", diff: "hard" },
-              { name: "132 Pattern (revisit)", lc: "456", diff: "medium" },
-              { name: "Task Scheduler (revisit)", lc: "621", diff: "medium" },
-            ]
-          },
-          { num: 42, title: "Rest & Revise", rest: true, note: "Write BFS and DFS templates from memory. These are the foundation of everything in Month 3 — trees, graphs, backtracking all use them." },
-        ]
-      },
-      {
-        week: 7, month: 2,
-        title: "Binary Trees — DFS & BFS",
-        tag: "Month 2 · Week 7",
-        focus: "Trees are the most interview-heavy data structure. 20–25% of mid-level interviews are tree problems. Master all traversals cold.",
-        mentor: "<strong>Every tree DFS problem follows a pattern: process left, process right, combine results.</strong> The only difference is WHAT you compute and WHERE you return. For path problems, use a global max variable. For subtree problems, return info from each node.",
-        days: [
-          {
-            num: 43, title: "Tree Traversals & Basics", note: "Know iterative inorder/preorder/postorder too — some interviewers ask for the iterative version explicitly. Level order (BFS) is just queue-based.", problems: [
-              { name: "Binary Tree Inorder Traversal", lc: "94", diff: "easy" },
-              { name: "Binary Tree Level Order Traversal", lc: "102", diff: "medium" },
-              { name: "Maximum Depth of Binary Tree", lc: "104", diff: "easy" },
-              { name: "Symmetric Tree", lc: "101", diff: "easy" },
-              { name: "Invert Binary Tree", lc: "226", diff: "easy" },
-              { name: "Diameter of Binary Tree", lc: "543", diff: "easy" },
-            ]
-          },
-          {
-            num: 44, title: "Tree DFS — Path Problems", note: "Binary Tree Max Path Sum is the canonical 'global variable + local return' problem. The key: you can either INCLUDE the node in the path or USE it as the top of an arc.", problems: [
-              { name: "Path Sum", lc: "112", diff: "easy" },
-              { name: "Path Sum II", lc: "113", diff: "medium" },
-              { name: "Path Sum III", lc: "437", diff: "medium" },
-              { name: "Binary Tree Maximum Path Sum", lc: "124", diff: "hard" },
-              { name: "Sum Root to Leaf Numbers", lc: "129", diff: "medium" },
-            ]
-          },
-          {
-            num: 45, title: "Tree BFS — Level Order", note: "All BFS tree problems use: queue.append(root), then while queue: level = [], for _ in range(len(queue)): pop, process, push children. Memorize this.", problems: [
-              { name: "Binary Tree Zigzag Level Order Traversal", lc: "103", diff: "medium" },
-              { name: "Binary Tree Right Side View", lc: "199", diff: "medium" },
-              { name: "Average of Levels in Binary Tree", lc: "637", diff: "easy" },
-              { name: "Find Largest Value in Each Tree Row", lc: "515", diff: "medium" },
-              { name: "Populating Next Right Pointers in Each Node", lc: "116", diff: "medium" },
-            ]
-          },
-          {
-            num: 46, title: "Tree Construction", note: "Construct from preorder+inorder: preorder[0] is root, find its index in inorder, split left/right. Serialize: BFS level-order with 'null' markers.", problems: [
-              { name: "Construct Binary Tree from Preorder and Inorder", lc: "105", diff: "medium" },
-              { name: "Construct Binary Tree from Inorder and Postorder", lc: "106", diff: "medium" },
-              { name: "Flatten Binary Tree to Linked List", lc: "114", diff: "medium" },
-              { name: "Serialize and Deserialize Binary Tree", lc: "297", diff: "hard" },
-              { name: "Maximum Width of Binary Tree", lc: "662", diff: "medium" },
-            ]
-          },
-          {
-            num: 47, title: "Tree Advanced", note: "LCA is the #1 most asked tree problem in interviews. Understand both versions: when nodes are guaranteed to exist AND when they might not.", problems: [
-              { name: "Lowest Common Ancestor of Binary Tree", lc: "236", diff: "medium" },
-              { name: "Count Good Nodes in Binary Tree", lc: "1448", diff: "medium" },
-              { name: "All Nodes Distance K in Binary Tree", lc: "863", diff: "medium" },
-              { name: "Vertical Order Traversal", lc: "987", diff: "hard" },
-              { name: "Find Leaves of Binary Tree", lc: "366", diff: "medium" },
-            ]
-          },
-          {
-            num: 48, title: "Tree Review", note: "Check Completeness is a pure BFS trick (once you see null, everything after must be null). Even Odd Tree tests your level-order mastery.", problems: [
-              { name: "Check Completeness of a Binary Tree", lc: "958", diff: "medium" },
-              { name: "Even Odd Tree", lc: "1609", diff: "medium" },
-              { name: "Maximum Level Sum of a Binary Tree", lc: "1161", diff: "medium" },
-              { name: "Pseudo-Palindromic Paths in a Binary Tree", lc: "1457", diff: "medium" },
-              { name: "Binary Tree Cameras", lc: "968", diff: "hard" },
-            ]
-          },
-          { num: 49, title: "Rest & Revise", rest: true, note: "Tree week done. On paper: write DFS path-sum template + BFS level-order template from memory. These are tested VERY frequently." },
-        ]
-      },
-      {
-        week: 8, month: 2,
-        title: "BST + Heaps + Tries",
-        tag: "Month 2 · Week 8",
-        focus: "BST gives you sorted order 'for free'. Heaps give you min/max in O(log n). These are the data structures behind real system design.",
-        mentor: "BST inorder traversal gives you sorted order — this is the single most useful property. Heaps: <strong>Python has heapq (min-heap by default; negate for max-heap)</strong>. The Two-Heap pattern (Find Median from Data Stream) is a famous hard that becomes medium once you understand it.",
-        days: [
-          {
-            num: 50, title: "BST Basics", note: "BST inorder = sorted. Use this to solve k-th smallest in O(n) with Morris traversal or O(h) space with iterative inorder.", problems: [
-              { name: "Validate Binary Search Tree", lc: "98", diff: "medium" },
-              { name: "Kth Smallest Element in BST", lc: "230", diff: "medium" },
-              { name: "Lowest Common Ancestor of BST", lc: "235", diff: "medium" },
-              { name: "Insert into a Binary Search Tree", lc: "701", diff: "medium" },
-              { name: "Delete Node in a BST", lc: "450", diff: "medium" },
-              { name: "Range Sum of BST", lc: "938", diff: "easy" },
-            ]
-          },
-          {
-            num: 51, title: "BST Advanced", note: "Recover BST (two swapped nodes): inorder traversal finds two anomalies — where desc order breaks.", problems: [
-              { name: "Convert Sorted Array to Binary Search Tree", lc: "108", diff: "easy" },
-              { name: "Recover Binary Search Tree", lc: "99", diff: "hard" },
-              { name: "Convert BST to Greater Tree", lc: "538", diff: "medium" },
-              { name: "Binary Search Tree Iterator", lc: "173", diff: "medium" },
-              { name: "Trim a Binary Search Tree", lc: "669", diff: "medium" },
-            ]
-          },
-          {
-            num: 52, title: "Heaps — Core Patterns", note: "Top K problems: use a heap of size K. K Closest Points: push all with distance, pop K. Or maintain a max-heap of size K and pop when size > K.", problems: [
-              { name: "Kth Largest Element in an Array", lc: "215", diff: "medium" },
-              { name: "K Closest Points to Origin", lc: "973", diff: "medium" },
-              { name: "Top K Frequent Elements", lc: "347", diff: "medium" },
-              { name: "Task Scheduler (heap approach)", lc: "621", diff: "medium" },
-              { name: "Reorganize String", lc: "767", diff: "medium" },
-            ]
-          },
-          {
-            num: 53, title: "Heaps — Hard", note: "Find Median from Data Stream: one max-heap for lower half, one min-heap for upper half. Keep them balanced. This is a top-5 heap problem to know.", problems: [
-              { name: "Find Median from Data Stream", lc: "295", diff: "hard" },
-              { name: "Merge K Sorted Lists (heap approach)", lc: "23", diff: "hard" },
-              { name: "IPO (max profit k projects)", lc: "502", diff: "hard" },
-              { name: "Maximum Performance of a Team", lc: "1383", diff: "hard" },
-              { name: "Smallest Number in Infinite Set", lc: "2336", diff: "medium" },
-            ]
-          },
-          {
-            num: 54, title: "Tries", note: "Trie node = {'children': {}, 'end': False}. In Python use defaultdict. Word Search II uses Trie + DFS — this is a hard but worth understanding.", problems: [
-              { name: "Implement Trie (Prefix Tree)", lc: "208", diff: "medium" },
-              { name: "Design Add and Search Words Data Structure", lc: "211", diff: "medium" },
-              { name: "Word Search II", lc: "212", diff: "hard" },
-              { name: "Replace Words", lc: "648", diff: "medium" },
-              { name: "Maximum XOR of Two Numbers in an Array", lc: "421", diff: "medium" },
-            ]
-          },
-          {
-            num: 55, title: "Month 2 Review", note: "Weak area cleanup. Go through your submission history and identify patterns you're still shaky on. Re-solve 5 problems you needed hints for.", problems: [
-              { name: "Serialize and Deserialize Binary Tree (revisit)", lc: "297", diff: "hard" },
-              { name: "Find Median from Data Stream (revisit)", lc: "295", diff: "hard" },
-              { name: "Word Ladder (revisit)", lc: "127", diff: "hard" },
-              { name: "Binary Tree Maximum Path Sum (revisit)", lc: "124", diff: "hard" },
-              { name: "Merge K Sorted Lists (revisit)", lc: "23", diff: "hard" },
-            ]
-          },
-          {
-            num: 56, title: "Month 2 Mock Interview", note: "🎯 MOCK DAY: 2 hours. 4 problems cold: 1 LL problem + 1 Tree problem + 1 Heap problem + 1 Stack/Queue. Time each to 30 min. After: write down what you learned.", problems: [
-              { name: "LRU Cache", lc: "146", diff: "medium" },
-              { name: "Binary Tree Right Side View", lc: "199", diff: "medium" },
-              { name: "Top K Frequent Elements", lc: "347", diff: "medium" },
-              { name: "Validate Binary Search Tree", lc: "98", diff: "medium" },
-            ]
-          },
-        ]
-      },
-      {
-        week: 9, month: 3,
-        title: "Recursion + DP Foundations",
-        tag: "Month 3 · Week 9",
-        focus: "Dynamic Programming = smart recursion with memory. Start with recursion. Convert to top-down memo. Then bottom-up. This 3-step process is your guide.",
-        mentor: "DP has a formula: <strong>define state → write recurrence → add base cases → memo/tabulate</strong>. Do NOT try to jump to bottom-up DP first. Always start with brute force recursion → add memo (top-down) → convert to iterative (bottom-up).",
-        days: [
-          {
-            num: 57, title: "Recursion Fundamentals", note: "Subsets, Permutations, Combinations — these are the building blocks of Backtracking. Nail the recursive tree thinking here before DP.", problems: [
-              { name: "Pow(x, n)", lc: "50", diff: "medium" },
-              { name: "Subsets", lc: "78", diff: "medium" },
-              { name: "Permutations", lc: "46", diff: "medium" },
-              { name: "Combinations", lc: "77", diff: "medium" },
-              { name: "Letter Combinations of a Phone Number", lc: "17", diff: "medium" },
-              { name: "Generate Parentheses", lc: "22", diff: "medium" },
-            ]
-          },
-          {
-            num: 58, title: "DP — Linear (Intro)", note: "Climbing Stairs → House Robber → House Robber II. Each one slightly harder. Notice the recurrence pattern: dp[i] = f(dp[i-1], dp[i-2]).", problems: [
-              { name: "Climbing Stairs", lc: "70", diff: "easy" },
-              { name: "House Robber", lc: "198", diff: "medium" },
-              { name: "House Robber II (Circular)", lc: "213", diff: "medium" },
-              { name: "Min Cost Climbing Stairs", lc: "746", diff: "easy" },
-              { name: "Fibonacci Number", lc: "509", diff: "easy" },
-              { name: "Tribonacci Number", lc: "1137", diff: "easy" },
-            ]
-          },
-          {
-            num: 59, title: "DP — Unbounded & Bounded", note: "Coin Change: dp[amount] = min(dp[amount - coin] + 1). Unbounded knapsack pattern — you can reuse coins. Word Break: is dp[i] possible?", problems: [
-              { name: "Coin Change", lc: "322", diff: "medium" },
-              { name: "Coin Change II", lc: "518", diff: "medium" },
-              { name: "Word Break", lc: "139", diff: "medium" },
-              { name: "Decode Ways", lc: "91", diff: "medium" },
-              { name: "Perfect Squares", lc: "279", diff: "medium" },
-              { name: "Integer Break", lc: "343", diff: "medium" },
-            ]
-          },
-          {
-            num: 60, title: "DP — Subsequences", note: "LCS is the template for all subsequence DP. dp[i][j] = length of LCS of s1[:i] and s2[:j]. Notice how you fill the 2D table row by row.", problems: [
-              { name: "Longest Increasing Subsequence", lc: "300", diff: "medium" },
-              { name: "Longest Common Subsequence", lc: "1143", diff: "medium" },
-              { name: "Number of Longest Increasing Subsequences", lc: "673", diff: "medium" },
-              { name: "Delete Operation for Two Strings", lc: "583", diff: "medium" },
-              { name: "Uncrossed Lines", lc: "1035", diff: "medium" },
-            ]
-          },
-          {
-            num: 61, title: "DP — Strings (Hard)", note: "Edit Distance is THE classic string DP. dp[i][j] = min edits to convert s1[:i] to s2[:j]. Understand the 3-way recurrence.", problems: [
-              { name: "Edit Distance", lc: "72", diff: "hard" },
-              { name: "Minimum ASCII Delete Sum for Two Strings", lc: "712", diff: "medium" },
-              { name: "Distinct Subsequences", lc: "115", diff: "hard" },
-              { name: "Wildcard Matching", lc: "44", diff: "hard" },
-              { name: "Interleaving String", lc: "97", diff: "medium" },
-            ]
-          },
-          {
-            num: 62, title: "Week 9 DP Review", note: "Pick 5 DP problems you solved with hints. Re-solve without. Can you write the recurrence before coding? That's your mastery check.", problems: [
-              { name: "Coin Change (revisit)", lc: "322", diff: "medium" },
-              { name: "Longest Increasing Subsequence (revisit)", lc: "300", diff: "medium" },
-              { name: "Edit Distance (revisit)", lc: "72", diff: "hard" },
-              { name: "Word Break (revisit)", lc: "139", diff: "medium" },
-              { name: "House Robber II (revisit)", lc: "213", diff: "medium" },
-            ]
-          },
-          { num: 63, title: "Rest & Revise", rest: true, note: "DP week 1 done! Write the 5 most common DP recurrence patterns on paper: linear, LCS, LIS, knapsack, grid. These are the 80% of what appears in interviews." },
-        ]
-      },
-      {
-        week: 10, month: 3,
-        title: "DP — Grid, Knapsack & State Machine",
-        tag: "Month 3 · Week 10",
-        focus: "2D DP, interval DP, and state-machine DP. These cover the hardest DP patterns in FAANG interviews — done at a confident working level, not expert.",
-        mentor: "Grid DP is visual — draw the table and fill it in order. Interval DP (burst balloons, stone merge) is trickier: you iterate by length of interval, not position. <strong>Stock problems teach state-machine DP</strong> — define states (holding/not holding, k transactions) and transitions between them.",
-        days: [
-          {
-            num: 64, title: "Grid DP", note: "Unique Paths is the simplest 2D DP — dp[i][j] = paths to reach (i,j). Maximal Square is slightly harder: dp[i][j] = size of largest square ending at (i,j).", problems: [
-              { name: "Unique Paths", lc: "62", diff: "medium" },
-              { name: "Unique Paths II (with obstacles)", lc: "63", diff: "medium" },
-              { name: "Minimum Path Sum", lc: "64", diff: "medium" },
-              { name: "Triangle", lc: "120", diff: "medium" },
-              { name: "Maximal Square", lc: "221", diff: "medium" },
-              { name: "Dungeon Game", lc: "174", diff: "hard" },
-            ]
-          },
-          {
-            num: 65, title: "Knapsack DP", note: "0/1 Knapsack (Partition Equal Subset Sum): dp[i][w] = can we reach sum w using first i items? Target Sum: same idea but counting ways.", problems: [
-              { name: "Partition Equal Subset Sum", lc: "416", diff: "medium" },
-              { name: "Target Sum", lc: "494", diff: "medium" },
-              { name: "Last Stone Weight II", lc: "1049", diff: "medium" },
-              { name: "Ones and Zeroes", lc: "474", diff: "medium" },
-              { name: "Profitable Schemes", lc: "879", diff: "hard" },
-            ]
-          },
-          {
-            num: 66, title: "Interval DP", note: "Interval DP: for length l from 2 to n, for start i, end j = i+l-1, try all split points k. Burst Balloons is the classic — think of k as the LAST burst balloon.", problems: [
-              { name: "Burst Balloons", lc: "312", diff: "hard" },
-              { name: "Stone Game", lc: "877", diff: "medium" },
-              { name: "Palindrome Partitioning II", lc: "132", diff: "hard" },
-              { name: "Strange Printer", lc: "664", diff: "hard" },
-              { name: "Minimum Cost to Merge Stones", lc: "1000", diff: "hard" },
-            ]
-          },
-          {
-            num: 67, title: "Stock / State Machine DP", note: "The stock series is the best way to learn state-machine DP. Start with I, II, then cooldown, then fee, then III & IV with k transactions.", problems: [
-              { name: "Best Time to Buy/Sell Stock with Cooldown", lc: "309", diff: "medium" },
-              { name: "Best Time to Buy/Sell Stock with Transaction Fee", lc: "714", diff: "medium" },
-              { name: "Best Time to Buy/Sell Stock III (at most 2)", lc: "123", diff: "hard" },
-              { name: "Best Time to Buy/Sell Stock IV (at most k)", lc: "188", diff: "hard" },
-              { name: "Maximum Profit in Job Scheduling", lc: "1235", diff: "hard" },
-            ]
-          },
-          {
-            num: 68, title: "DP Hard Mix", note: "Cherry Pickup II is a beautiful 3D DP problem — two robots moving simultaneously. Visualize the state as (row, col1, col2).", problems: [
-              { name: "Minimum Number of Refueling Stops", lc: "871", diff: "hard" },
-              { name: "Cherry Pickup II", lc: "1463", diff: "hard" },
-              { name: "Paint House III", lc: "1473", diff: "hard" },
-              { name: "Number of Ways to Paint N × 3 Grid", lc: "1411", diff: "hard" },
-              { name: "Count Vowels Permutation", lc: "1220", diff: "hard" },
-            ]
-          },
-          {
-            num: 69, title: "DP Mock Interview", note: "🎯 MOCK: 90 min, 3 DP problems. One from each: 1D DP, 2D grid/subsequence, state machine. Write the recurrence before coding.", problems: [
-              { name: "Coin Change (timed)", lc: "322", diff: "medium" },
-              { name: "Unique Paths II (timed)", lc: "63", diff: "medium" },
-              { name: "Best Time to Buy/Sell Stock with Cooldown (timed)", lc: "309", diff: "medium" },
-              { name: "Partition Equal Subset Sum (timed)", lc: "416", diff: "medium" },
-            ]
-          },
-          { num: 70, title: "Rest & Revise", rest: true, note: "DP checkpoint: Can you identify whether a problem needs 1D vs 2D DP just from its description? List your 3 hardest DP problems and understand them deeply." },
-        ]
-      },
-      {
-        week: 11, month: 3,
-        title: "Graphs + Backtracking",
-        tag: "Month 3 · Week 11",
-        focus: "Graphs at a confident working level — BFS/DFS, topological sort, Union Find. Backtracking: subsets, permutations, constraint satisfaction.",
-        mentor: "<strong>Graphs = BFS/DFS on steroids.</strong> You already know BFS on grids (Week 6). Graphs just generalize it to adjacency lists. For Backtracking, the pattern is always: choose → explore → unchoose. The 'unchoose' step (backtrack) is what makes it backtracking vs regular recursion.",
-        days: [
-          {
-            num: 71, title: "Graph BFS/DFS", note: "Number of Islands is BFS/DFS on a grid — you've done this. Course Schedule is BFS (topological sort) on a directed graph.", problems: [
-              { name: "Number of Islands", lc: "200", diff: "medium" },
-              { name: "Clone Graph", lc: "133", diff: "medium" },
-              { name: "Course Schedule (Cycle Detection)", lc: "207", diff: "medium" },
-              { name: "Course Schedule II (Topological Sort)", lc: "210", diff: "medium" },
-              { name: "Number of Connected Components", lc: "323", diff: "medium" },
-              { name: "Max Area of Island", lc: "695", diff: "medium" },
-            ]
-          },
-          {
-            num: 72, title: "Graph — Intermediate", note: "Surrounded Regions: flood fill from borders, anything left is 'X'. Pacific Atlantic: reverse flood — BFS from each ocean inward.", problems: [
-              { name: "Surrounded Regions", lc: "130", diff: "medium" },
-              { name: "Pacific Atlantic Water Flow", lc: "417", diff: "medium" },
-              { name: "Redundant Connection (Union Find)", lc: "684", diff: "medium" },
-              { name: "Graph Valid Tree", lc: "261", diff: "medium" },
-              { name: "Accounts Merge (Union Find)", lc: "721", diff: "medium" },
-            ]
-          },
-          {
-            num: 73, title: "Shortest Path (Dijkstra)", note: "Dijkstra = BFS with a priority queue (min-heap). dist[node] = min distance so far. Key: only process a node when you first pop it from the heap.", problems: [
-              { name: "Network Delay Time (Dijkstra)", lc: "743", diff: "medium" },
-              { name: "Cheapest Flights Within K Stops", lc: "787", diff: "medium" },
-              { name: "Path With Minimum Effort", lc: "1631", diff: "medium" },
-              { name: "Find the City with Smallest Number of Neighbors", lc: "1334", diff: "medium" },
-              { name: "Swim in Rising Water", lc: "778", diff: "hard" },
-            ]
-          },
-          {
-            num: 74, title: "Backtracking — Foundations", note: "Subsets/Permutations with duplicates: SORT first, then skip duplicates at the same recursion level (if i > start and nums[i] == nums[i-1]: continue).", problems: [
-              { name: "Subsets II (with duplicates)", lc: "90", diff: "medium" },
-              { name: "Permutations II (with duplicates)", lc: "47", diff: "medium" },
-              { name: "Combination Sum", lc: "39", diff: "medium" },
-              { name: "Combination Sum II", lc: "40", diff: "medium" },
-              { name: "N-Queens", lc: "51", diff: "hard" },
-            ]
-          },
-          {
-            num: 75, title: "Backtracking — Applied", note: "Word Search: DFS + backtrack by marking visited + unmark on return. Sudoku: try 1-9 in empty cells, recurse, if no solution backtrack.", problems: [
-              { name: "Word Search", lc: "79", diff: "medium" },
-              { name: "Sudoku Solver", lc: "37", diff: "hard" },
-              { name: "Palindrome Partitioning", lc: "131", diff: "medium" },
-              { name: "Path with Maximum Gold", lc: "1219", diff: "medium" },
-              { name: "Expression Add Operators", lc: "282", diff: "hard" },
-            ]
-          },
-          {
-            num: 76, title: "Graphs + BT Review", note: "Mixed hard day. These problems each require combining patterns — graph + DP, backtracking + pruning. Think before coding.", problems: [
-              { name: "Course Schedule IV (Transitive Closure)", lc: "1462", diff: "medium" },
-              { name: "Most Stones Removed", lc: "947", diff: "medium" },
-              { name: "Critical Connections in a Network", lc: "1192", diff: "hard" },
-              { name: "Number of Distinct Islands", lc: "694", diff: "medium" },
-              { name: "Restore IP Addresses", lc: "93", diff: "medium" },
-            ]
-          },
-          { num: 77, title: "Rest & Revise", rest: true, note: "Big picture check: you now have ALL major DSA patterns. Write all of them on one sheet of paper with their templates. This mental map is priceless." },
-        ]
-      },
-      {
-        week: 12, month: 3,
-        title: "Final Sprint — Mock Interviews",
-        tag: "Month 3 · Week 12",
-        focus: "The last week is NOT about learning new topics. It's about sharpening what you know, fixing weak spots, and building interview-day confidence.",
-        mentor: "<strong>Week 12 is make-or-break.</strong> Interviews test speed + accuracy under pressure. This week you will do 6 timed mock sessions — treat each like a real interview. No music, no breaks, no looking up hints. After each session, do a 15-minute debrief: what took too long? What did you forget?",
-        days: [
-          {
-            num: 78, title: "Mock #1 — Arrays & Strings", note: "🎯 2 hours. No hints. Solve 4 problems. These are typical screening round problems.", problems: [
-              { name: "3Sum", lc: "15", diff: "medium" },
-              { name: "Minimum Window Substring", lc: "76", diff: "hard" },
-              { name: "Longest Palindromic Substring", lc: "5", diff: "medium" },
-              { name: "Subarray Sum Equals K", lc: "560", diff: "medium" },
-            ]
-          },
-          {
-            num: 79, title: "Mock #2 — Trees & Graphs", note: "🎯 2 hours. Trees and graphs are the most common 2nd-round topics.", problems: [
-              { name: "Binary Tree Maximum Path Sum", lc: "124", diff: "hard" },
-              { name: "Serialize and Deserialize Binary Tree", lc: "297", diff: "hard" },
-              { name: "Course Schedule II", lc: "210", diff: "medium" },
-              { name: "Number of Islands", lc: "200", diff: "medium" },
-            ]
-          },
-          {
-            num: 80, title: "Mock #3 — DP", note: "🎯 90 min. 3 DP problems. Speed matters. Can you derive the recurrence in under 10 minutes?", problems: [
-              { name: "Coin Change", lc: "322", diff: "medium" },
-              { name: "Longest Common Subsequence", lc: "1143", diff: "medium" },
-              { name: "Burst Balloons", lc: "312", diff: "hard" },
-              { name: "Target Sum", lc: "494", diff: "medium" },
-            ]
-          },
-          {
-            num: 81, title: "Weak Spot Patch Day", note: "Look at your mock results. Which pattern did you spend the most time on? Today: 5 problems from that pattern exclusively.", problems: [
-              { name: "Trapping Rain Water", lc: "42", diff: "hard" },
-              { name: "Edit Distance", lc: "72", diff: "hard" },
-              { name: "Word Ladder", lc: "127", diff: "hard" },
-              { name: "Find Median from Data Stream", lc: "295", diff: "hard" },
-              { name: "Merge K Sorted Lists", lc: "23", diff: "hard" },
-            ]
-          },
-          {
-            num: 82, title: "Mock #4 — Mixed Hard", note: "🎯 2 hours. Mixed bag — like a real Google/Meta first round. Hard problems appear here.", problems: [
-              { name: "Largest Rectangle in Histogram", lc: "84", diff: "hard" },
-              { name: "Word Search II", lc: "212", diff: "hard" },
-              { name: "Best Time to Buy/Sell Stock IV", lc: "188", diff: "hard" },
-              { name: "Regular Expression Matching", lc: "10", diff: "hard" },
-            ]
-          },
-          {
-            num: 83, title: "Mock #5 — Speed Round", note: "🎯 60 min. 6 medium problems. Speed + accuracy. This simulates a take-home assessment. No hints at all.", problems: [
-              { name: "Container With Most Water", lc: "11", diff: "medium" },
-              { name: "LRU Cache", lc: "146", diff: "medium" },
-              { name: "Kth Largest Element in Array", lc: "215", diff: "medium" },
-              { name: "Course Schedule", lc: "207", diff: "medium" },
-              { name: "House Robber II", lc: "213", diff: "medium" },
-              { name: "Longest Increasing Subsequence", lc: "300", diff: "medium" },
-            ]
-          },
-          {
-            num: 84, title: "Final Day — Calm & Confident", note: "🏁 You made it. Today: do 3 problems you LOVE. Then read your notes. You've solved ~500 problems across 12 weeks. You are ready. Trust your preparation. Go get that offer. 🚀", problems: [
-              { name: "Two Sum (your origin story)", lc: "1", diff: "easy" },
-              { name: "Maximum Subarray (the first hard pattern you learned)", lc: "53", diff: "medium" },
-              { name: "Binary Tree Level Order Traversal (the pattern that unlocked trees)", lc: "102", diff: "medium" },
-            ]
-          },
-        ]
-      },
-    ];
-
-    let currentWeek = null;
-
-    const MC = { 1: 'm1', 2: 'm2', 3: 'm3' };
-
-    function buildSidebar() {
-      const sb = document.getElementById('sidebar');
-      const labels = ['Foundation', 'Core DS', 'Advanced'];
-      let html = '';
-      [1, 2, 3].forEach(m => {
-        const weeks = PLAN.filter(w => w.month === m);
-        const mc = MC[m];
-        html += `<div class="sidebar-group sg-${mc}">
-          <div class="sidebar-label">Month ${m} · ${labels[m - 1]}</div>`;
-        weeks.forEach(w => {
-          const active = currentWeek === w.week;
-          html += `<button class="week-btn${active ? ' active' : ''}" onclick="showWeek(${w.week})">
-            <span class="w-num">W${w.week}</span>
-            ${w.title}
-          </button>`;
-        });
-        html += `</div>`;
-      });
-      sb.innerHTML = html;
-    }
-
-    function showWeek(n) {
-      currentWeek = n;
-      buildSidebar();
-      renderWeek();
-      document.getElementById('main').scrollTop = 0;
-    }
-
-    function renderWeek() {
-      const week = PLAN.find(w => w.week === currentWeek);
-      if (!week) return;
-      const mc = MC[week.month];
-      const totalProbs = week.days.reduce((a, d) => a + (d.problems ? d.problems.length : 0), 0);
-
-      let html = `<div class="week-hero animate-in">
-        <div class="week-eyebrow" style="color:var(--${mc})">${week.tag}</div>
-        <div class="week-title">Week ${week.week}: ${week.title}</div>
-        <div class="week-focus">${week.focus}</div>
-        <div class="week-chips">
-          <span class="chip chip-${mc}">${totalProbs} problems</span>
-          <span class="chip chip-${mc}">7 days</span>
-          <span class="chip chip-neutral">Python → JS</span>
-        </div>
-        <div class="mentor-block ${mc}">
-          <div class="mentor-label" style="color:var(--${mc})">Mentor Note</div>
-          ${week.mentor}
-        </div>
-      </div>
-      <div class="days-grid">`;
-
-      week.days.forEach((day, idx) => {
-        const isRest = day.rest;
-        html += `<div class="day-card${isRest ? ' rest-day' : ''}" id="dc-${week.week}-${idx}">
-          <div class="day-header" onclick="toggleDay(${week.week}, ${idx})">
-            <div class="day-num-badge">Day ${day.num}</div>
-            <div class="day-title">${day.title}</div>
-            <div class="day-meta">
-              ${isRest
-            ? `<span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-4)">Rest</span>`
-            : `<span class="p-count-badge">${day.problems.length}p</span>`
-          }
-              <div class="expand-btn">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </div>
-          </div>`;
-
-        if (isRest) {
-          html += `<div class="rest-content">
-            <div class="rest-icon">🌙</div>
-            <div class="rest-text"><strong>Rest & Review Day</strong><br>${day.note}</div>
-          </div>`;
-        } else {
-          html += `<div class="day-body">`;
-          if (day.note) html += `<div class="day-note">${day.note}</div>`;
-          day.problems.forEach((p, pi) => {
-            const slug = toLCSlug(p.name);
-            html += `<div class="problem-row">
-              <div class="p-idx">${String(pi + 1).padStart(2, '0')}</div>
-              <div class="p-name">${p.name}</div>
-              <div class="p-lc">LC ${p.lc}</div>
-              <div class="diff-tag ${p.diff}">${p.diff}</div>
-              <a class="solve-link" href="https://leetcode.com/problems/${slug}/" target="_blank" rel="noopener noreferrer">Solve ↗</a>
-            </div>`;
-          });
-          html += `</div>`;
-        }
-        html += `</div>`;
-      });
-
-      html += `</div>`;
-      document.getElementById('main').innerHTML = html;
-    }
-
-    function renderOverview() {
-      document.getElementById('main').innerHTML = `
-        <div class="overview-header animate-in">
-          <div class="overview-eyebrow">Your personal prep plan</div>
-          <div class="overview-title">90-Day DSA Blueprint<br><em>for the serious candidate</em></div>
-          <div class="overview-sub">A structured, mentor-guided journey from array fundamentals to dynamic programming and graphs — built to get you ready for FAANG and top-tier engineering interviews.</div>
-        </div>
-
-        <div class="overview-grid">
-          <div class="phase-card">
-            <div class="phase-month" style="color:var(--m1)">Month 1</div>
-            <div class="phase-weeks" style="background:var(--m1-bg);color:var(--m1)">Weeks 1–4</div>
-            <div class="phase-title">Foundation</div>
-            <div class="phase-desc">Arrays, Two Pointers, Sliding Window, Hashing, Prefix Sum, Binary Search, Sorting, Intervals, and Stacks. The patterns that solve 40% of all interview problems.</div>
-          </div>
-          <div class="phase-card">
-            <div class="phase-month" style="color:var(--m2)">Month 2</div>
-            <div class="phase-weeks" style="background:var(--m2-bg);color:var(--m2)">Weeks 5–8</div>
-            <div class="phase-title">Core Data Structures</div>
-            <div class="phase-desc">Linked Lists, Stacks & Queues with BFS patterns, Binary Trees (DFS & BFS), BST, Heaps/Priority Queues, and Tries. The data structures FAANG loves.</div>
-          </div>
-          <div class="phase-card">
-            <div class="phase-month" style="color:var(--m3)">Month 3</div>
-            <div class="phase-weeks" style="background:var(--m3-bg);color:var(--m3)">Weeks 9–12</div>
-            <div class="phase-title">Advanced Techniques</div>
-            <div class="phase-desc">Dynamic Programming (1D, 2D, interval, state machine), Graphs (BFS/DFS, Dijkstra, Union Find), Backtracking, and intensive mock interview sessions.</div>
-          </div>
-        </div>
-
-        <div class="rules-section">
-          <div class="rules-title">How to use this plan</div>
-          <div class="rules-grid">
-            <div class="rule">
-              <div class="rule-ico">⏱</div>
-              <div class="rule-body"><strong>25-min rule</strong> — Spend 25 min trying independently. After that, look at a hint (not the solution). After 10 more, read the approach — not the code.</div>
-            </div>
-            <div class="rule">
-              <div class="rule-ico">✍️</div>
-              <div class="rule-body"><strong>Write it out</strong> — For every hard problem, write the recurrence or approach in plain English before coding. This is the skill interviewers actually test.</div>
-            </div>
-            <div class="rule">
-              <div class="rule-ico">🔄</div>
-              <div class="rule-body"><strong>Re-solve on Day 7</strong> — Every rest day, pick 3 problems from the week you solved with hints and re-solve them cold. This is spaced repetition.</div>
-            </div>
-            <div class="rule">
-              <div class="rule-ico">🐍</div>
-              <div class="rule-body"><strong>Python main, JS bonus</strong> — Code every solution in Python first. Optionally rewrite stack/queue/tree solutions in JavaScript once you've passed in Python.</div>
-            </div>
-            <div class="rule">
-              <div class="rule-ico">💬</div>
-              <div class="rule-body"><strong>Talk out loud</strong> — Narrate your approach while solving. "I'm using a sliding window because the array is contiguous…" This is interview muscle memory.</div>
-            </div>
-            <div class="rule">
-              <div class="rule-ico">🎯</div>
-              <div class="rule-body"><strong>Pattern over problem</strong> — Don't memorize solutions. Learn the PATTERN behind each problem. One pattern unlocks dozens of similar problems.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="nav-hint">← Select a week from the sidebar to begin</div>
-      `;
-    }
-
-    function toggleDay(week, idx) {
-      const card = document.getElementById(`dc-${week}-${idx}`);
-      if (card) card.classList.toggle('open');
-    }
-
-    function toLCSlug(name) {
-      return name.toLowerCase()
-        .replace(/&/g, ' and ')
-        .replace(/\//g, ' and ')
-        .replace(/\+/g, ' plus ')
-        .replace(/[^a-z0-9\s-]/g, '')
-        .trim()
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-');
-    }
-
-    buildSidebar();
-    renderOverview();
-  </script>
+document.getElementById('app').innerHTML=PLAN.map(phase).join('');
+updateProgress();
+</script>
 </body>
-
 </html>
